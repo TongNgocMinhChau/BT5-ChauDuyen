@@ -1,0 +1,1141 @@
+:root {
+	--color-ink: #20312b; /* Màu chữ chính có độ tương phản cao. */
+	--color-muted: #68766e; /* Màu chữ phụ cho thông tin ít ưu tiên. */
+	--color-paper: #f5f7f2; /* Nền ấm nhẹ cho toàn trang. */
+	--color-surface: #ffffff; /* Nền thẻ và khu vực nội dung. */
+	--color-line: #dce4dc; /* Đường viền mảnh phân tách nội dung. */
+	--color-primary: #1c614d; /* Màu thương hiệu xanh rừng. */
+	--color-primary-dark: #154b3c; /* Màu hover đậm cho hành động chính. */
+	--color-accent: #f1a365; /* Màu nhấn ấm cho điểm cần chú ý. */
+	--color-food: #d85b3f; /* Màu nhận diện nhu cầu thực phẩm. */
+	--color-medical: #387ab7; /* Màu nhận diện nhu cầu y tế. */
+	--color-shelter: #538a58; /* Màu nhận diện nhu cầu nơi ở. */
+	--color-map: #e4ece2; /* Nền bản đồ tĩnh, dịu mắt. */
+	--space-1: 0.5rem; /* Khoảng cách nhỏ theo hệ thống 8 điểm. */
+	--space-2: 1rem; /* Khoảng cách tiêu chuẩn. */
+	--space-3: 1.5rem; /* Khoảng cách giữa các nhóm nội dung. */
+	--space-4: 2rem; /* Khoảng cách section ngắn. */
+	--space-5: 3rem; /* Khoảng cách section rộng. */
+	--space-6: 5rem; /* Khoảng cách lớn trên desktop. */
+	--radius-sm: 0.5rem; /* Bo góc nhỏ cho nút và nhãn. */
+	--radius-md: 0.875rem; /* Bo góc thành phần và thẻ. */
+	--radius-lg: 1.25rem; /* Bo góc khung lớn. */
+	--shadow-soft: 0 12px 32px rgb(33 58 45 / 8%); /* Bóng nhẹ của khung bản đồ. */
+	--shadow-card: 0 8px 22px rgb(33 58 45 / 7%); /* Bóng mặc định của card. */
+	--shadow-hover: 0 16px 32px rgb(33 58 45 / 14%); /* Bóng tăng nhẹ khi hover. */
+	--transition-fast: 180ms cubic-bezier(0.2, 0.75, 0.25, 1); /* Easing nhanh cho phản hồi nút. */
+	--transition-card: 280ms cubic-bezier(0.22, 1, 0.36, 1); /* Easing mềm cho card. */
+	--font-body: "Aptos", "Segoe UI", sans-serif; /* Font hệ thống rõ ràng, không tải tài nguyên ngoài. */
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box; /* Tính padding trong kích thước phần tử. */
+}
+
+html {
+	scroll-behavior: smooth; /* Cuộn đến khu vực liên kết một cách nhẹ nhàng. */
+	scroll-padding-top: 1.5rem; /* Chừa khoảng thở khi đến đích liên kết. */
+}
+
+body {
+	margin: 0; /* Loại bỏ lề mặc định của trình duyệt. */
+	overflow-x: hidden; /* Ngăn đường phố mô phỏng gây tràn ngang. */
+	background: var(--color-paper); /* Áp dụng màu nền của design system. */
+	color: var(--color-ink); /* Đặt màu chữ mặc định. */
+	font-family: var(--font-body); /* Dùng font dễ đọc có sẵn trên thiết bị. */
+	font-size: 1rem; /* Giữ cỡ chữ cơ sở dễ đọc. */
+	line-height: 1.6; /* Tạo khoảng dòng thoáng cho nội dung tiếng Việt. */
+}
+
+a {
+	color: inherit; /* Giữ màu liên kết theo ngữ cảnh thiết kế. */
+	text-decoration: none; /* Bỏ gạch chân mặc định, bổ sung trạng thái tương tác riêng. */
+}
+
+button,
+a {
+	-webkit-tap-highlight-color: transparent; /* Bỏ lớp phủ chạm mặc định trên mobile. */
+}
+
+a:focus-visible {
+	outline: 3px solid var(--color-accent); /* Tạo viền focus rõ cho thao tác bàn phím. */
+	outline-offset: 4px; /* Tách viền focus khỏi nội dung liên kết. */
+}
+
+.page-shell {
+	width: min(1120px, calc(100% - 3rem)); /* Giới hạn chiều rộng và chừa lề hai bên. */
+	margin-inline: auto; /* Căn nội dung vào giữa màn hình. */
+}
+
+.skip-link {
+	position: absolute; /* Đưa liên kết hỗ trợ ra khỏi luồng nội dung thường. */
+	z-index: 10; /* Đặt liên kết phía trên nội dung khi được focus. */
+	padding: 0.7rem 1rem; /* Tạo vùng bấm đủ rộng. */
+	transform: translateY(-150%); /* Ẩn bằng transform, không dịch chuyển luồng bố cục. */
+	background: var(--color-ink); /* Tạo nền tương phản cho liên kết. */
+	color: white; /* Giữ chữ dễ đọc trên nền tối. */
+}
+
+.skip-link:focus {
+	transform: translateY(0); /* Hiện liên kết khi người dùng điều hướng bàn phím. */
+}
+
+.site-header {
+	position: relative; /* Tạo lớp chứa riêng cho header. */
+	z-index: 2; /* Giữ điều hướng phía trên phần minh họa. */
+	display: flex; /* Sắp xếp thương hiệu và navigation theo hàng. */
+	align-items: center; /* Căn giữa các thành phần theo trục dọc. */
+	justify-content: space-between; /* Đẩy thương hiệu và navigation về hai phía. */
+	gap: var(--space-3); /* Giữ khoảng cách khi nội dung co lại. */
+	width: min(1280px, calc(100% - 4rem)); /* Tạo vùng header rộng hơn phần nội dung. */
+	min-height: 88px; /* Giữ chiều cao header ổn định. */
+	margin-inline: auto; /* Căn header giữa màn hình. */
+	animation: header-arrive 650ms cubic-bezier(0.16, 1, 0.3, 1) both; /* Header xuất hiện bằng fade nhẹ. */
+}
+
+.brand {
+	display: flex; /* Đặt biểu tượng cạnh phần tên thương hiệu. */
+	align-items: center; /* Căn biểu tượng và chữ theo trục dọc. */
+	gap: 0.75rem; /* Tạo khoảng cách giữa biểu tượng và tên. */
+	min-width: 0; /* Cho phép phần chữ co trên màn hình nhỏ. */
+}
+
+.brand-mark {
+	display: flex; /* Xếp ba nét biểu tượng trong một hàng. */
+	align-items: center; /* Căn các nét biểu tượng theo giữa. */
+	justify-content: center; /* Căn cụm biểu tượng vào tâm. */
+	gap: 3px; /* Tạo nhịp nhỏ giữa các nét. */
+	width: 42px; /* Giữ biểu tượng có khung ổn định. */
+	height: 42px; /* Cân bằng chiều ngang và chiều cao. */
+	border-radius: 13px; /* Bo góc vừa phải cho dấu hiệu thương hiệu. */
+	background: var(--color-primary); /* Tạo nền xanh nhận diện. */
+	transform: rotate(-5deg); /* Tạo nét riêng cho cụm biểu tượng. */
+}
+
+.brand-mark span {
+	display: block; /* Cho phép đặt kích thước từng nét. */
+	width: 5px; /* Tạo nét gọn, dễ phân biệt. */
+	border-radius: 5px; /* Làm đầu nét mềm. */
+	background: #dce8d9; /* Tạo tương phản dịu trên nền xanh. */
+}
+
+.brand-mark span:nth-child(1) { height: 13px; } /* Nét bên trái thấp hơn. */
+.brand-mark span:nth-child(2) { height: 22px; background: #f1a365; } /* Nét giữa làm điểm nhấn. */
+.brand-mark span:nth-child(3) { height: 17px; } /* Nét bên phải hoàn thiện nhịp biểu tượng. */
+
+.brand-copy {
+	display: grid; /* Xếp tên và mô tả thương hiệu thành hai hàng. */
+	line-height: 1.2; /* Giữ cụm tên gọn gàng. */
+}
+
+.brand-copy strong {
+	font-size: 0.98rem; /* Làm nổi bật tên thương hiệu. */
+	font-weight: 750; /* Tạo trọng lượng thị giác rõ ràng. */
+}
+
+.brand-copy small {
+	margin-top: 0.25rem; /* Tách mô tả khỏi tên thương hiệu. */
+	color: var(--color-muted); /* Hạ mức ưu tiên của mô tả ngắn. */
+	font-size: 0.72rem; /* Giữ mô tả phụ gọn. */
+}
+
+.primary-nav {
+	display: flex; /* Sắp xếp điều hướng theo hàng. */
+	align-items: center; /* Căn giữa liên kết theo trục dọc. */
+	gap: 0.45rem; /* Tạo khoảng cách dễ quét giữa các lựa chọn. */
+}
+
+.nav-link {
+	display: inline-flex; /* Căn nội dung và giữ vùng bấm linh hoạt. */
+	align-items: center; /* Căn chữ giữa vùng bấm. */
+	justify-content: center; /* Căn giữa nhãn ngắn. */
+	min-height: 44px; /* Đảm bảo vùng chạm phù hợp trên mobile. */
+	padding: 0.65rem 1rem; /* Tạo vùng bấm thoải mái. */
+	border-radius: var(--radius-sm); /* Bo nhẹ góc điều hướng. */
+	color: var(--color-muted); /* Phân biệt điều hướng với CTA. */
+	font-size: 0.9rem; /* Giữ navigation gọn. */
+	font-weight: 650; /* Tăng độ rõ của nhãn. */
+	transition: color var(--transition-fast), background var(--transition-fast), transform var(--transition-fast); /* Chuyển màu và vị trí nhẹ khi tương tác. */
+}
+
+.nav-link:hover {
+	background: #e9eee8; /* Tạo vùng hover trung tính. */
+	color: var(--color-ink); /* Nhấn mạnh mục được trỏ tới. */
+}
+
+.nav-link:active {
+	transform: scale(0.98); /* Phản hồi nhẹ khi nhấn. */
+}
+
+.nav-link-cta {
+	background: var(--color-primary); /* Làm nổi bật đăng ký tình nguyện. */
+	color: #ffffff; /* Đảm bảo tương phản trên nút xanh. */
+}
+
+.nav-link-cta:hover {
+	background: var(--color-primary-dark); /* Đổi sang xanh đậm khi hover. */
+	color: #ffffff; /* Giữ chữ sáng ở trạng thái hover. */
+	transform: translateY(-1px); /* Nâng nhẹ nút theo phản hồi trực quan. */
+}
+
+.hero {
+	display: grid; /* Chia hero thành nội dung và bản đồ. */
+	grid-template-columns: minmax(0, 0.94fr) minmax(0, 1.06fr); /* Ưu tiên không gian vừa đủ cho bản đồ. */
+	align-items: center; /* Căn hai cột theo chiều dọc. */
+	gap: clamp(2rem, 5vw, 5rem); /* Tạo khoảng cách co giãn theo viewport. */
+	padding-block: clamp(3rem, 6vw, 5.5rem) 4.5rem; /* Tạo khoảng thở hero linh hoạt. */
+	animation: hero-arrive 780ms cubic-bezier(0.16, 1, 0.3, 1) 100ms both; /* Hero fade và trượt lên nhẹ sau header. */
+}
+
+.hero-copy > * {
+	animation: copy-arrive 620ms cubic-bezier(0.2, 0.85, 0.25, 1) both; /* Tạo nhịp xuất hiện tuần tự cho nội dung hero. */
+}
+
+.hero-copy > :nth-child(1) { animation-delay: 160ms; } /* Hiện eyebrow trước. */
+.hero-copy > :nth-child(2) { animation-delay: 230ms; } /* Tiếp theo là tiêu đề. */
+.hero-copy > :nth-child(3) { animation-delay: 300ms; } /* Mô tả xuất hiện sau tiêu đề. */
+.hero-copy > :nth-child(4) { animation-delay: 370ms; } /* CTA nối tiếp phần giới thiệu. */
+.hero-copy > :nth-child(5) { animation-delay: 440ms; } /* Thống kê hoàn tất nhịp hero. */
+
+.eyebrow {
+	display: flex; /* Đặt dấu trạng thái cạnh nhãn chủ đề. */
+	align-items: center; /* Căn dấu và chữ cùng trục giữa. */
+	gap: 0.55rem; /* Tạo khoảng thở cho nhãn. */
+	margin: 0 0 1.1rem; /* Tách nhãn khỏi tiêu đề kế tiếp. */
+	color: var(--color-primary); /* Dùng màu thương hiệu cho nội dung định hướng. */
+	font-size: 0.75rem; /* Giữ nhãn nhỏ hơn nội dung chính. */
+	font-weight: 750; /* Tăng độ dễ quét của nhãn. */
+	text-transform: uppercase; /* Nhận diện eyebrow nhất quán. */
+}
+
+.status-dot,
+.live-indicator {
+	width: 8px; /* Định kích thước chấm trạng thái. */
+	height: 8px; /* Giữ chấm tròn cân đối. */
+	flex: 0 0 auto; /* Ngăn chấm bị co khi thiếu không gian. */
+	border-radius: 50%; /* Tạo hình tròn. */
+	background: #d57a45; /* Dùng màu nhấn ấm cho trạng thái đang hoạt động. */
+}
+
+.hero h1 {
+	max-width: 650px; /* Giữ dòng tiêu đề trong chiều dài dễ đọc. */
+	margin: 0; /* Bỏ lề mặc định để kiểm soát nhịp dọc. */
+	font-size: clamp(2.6rem, 5vw, 4.35rem); /* Tăng giảm cỡ tiêu đề theo khung nội dung. */
+	font-weight: 760; /* Tạo phân cấp chính rõ ràng. */
+	line-height: 1.04; /* Giữ tiêu đề lớn gọn và cân đối. */
+}
+
+.hero h1 span {
+	color: var(--color-primary); /* Nhấn câu thứ hai bằng màu thương hiệu. */
+}
+
+.hero-description {
+	max-width: 510px; /* Giới hạn chiều dài dòng để đọc nhanh. */
+	margin: 1.4rem 0 0; /* Tách mô tả khỏi tiêu đề. */
+	color: var(--color-muted); /* Tạo tương phản phân cấp so với tiêu đề. */
+	font-size: 1.02rem; /* Tăng nhẹ cỡ chữ mô tả chính. */
+}
+
+.button-group {
+	display: flex; /* Xếp hai CTA theo hàng trên màn hình rộng. */
+	flex-wrap: wrap; /* Cho phép xuống hàng nếu khung bị hẹp. */
+	gap: 0.75rem; /* Tạo khoảng chạm riêng giữa các nút. */
+	margin-top: 1.8rem; /* Tách CTA khỏi phần mô tả. */
+}
+
+.button {
+	display: inline-flex; /* Căn chữ và ký hiệu trên cùng một hàng. */
+	align-items: center; /* Căn giữa nội dung nút theo chiều dọc. */
+	justify-content: center; /* Giữ nhãn nằm giữa vùng nút. */
+	gap: 0.7rem; /* Tách ký hiệu khỏi nhãn. */
+	min-height: 50px; /* Tạo vùng tương tác đủ lớn. */
+	padding: 0.8rem 1.2rem; /* Cân đối khoảng đệm nút. */
+	border: 1px solid transparent; /* Giữ kích thước ổn định giữa trạng thái. */
+	border-radius: var(--radius-sm); /* Bo nhẹ thay vì tạo viên thuốc. */
+	font-size: 0.9rem; /* Giữ nhãn nút dễ đọc nhưng gọn. */
+	font-weight: 700; /* Làm hành động dễ nhận biết. */
+	transition: color var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast); /* Chuyển trạng thái nút ngắn và rõ. */
+}
+
+.button-primary {
+	background: var(--color-primary); /* Màu nền cho hành động quan trọng nhất. */
+	color: #ffffff; /* Tạo độ tương phản cho nhãn chính. */
+	box-shadow: 0 5px 14px rgb(28 97 77 / 16%); /* Tạo độ sâu nhẹ cho CTA chính. */
+}
+
+.button-primary:hover {
+	background: var(--color-primary-dark); /* Phản hồi bằng sắc xanh đậm hơn. */
+	box-shadow: 0 8px 20px rgb(28 97 77 / 22%); /* Tăng bóng vừa đủ khi hover. */
+	transform: translateY(-2px); /* Nâng nút nhẹ. */
+}
+
+.button-secondary {
+	border-color: var(--color-line); /* Viền phân biệt CTA phụ. */
+	background: transparent; /* Giữ nền thoáng để ưu tiên CTA chính. */
+	color: var(--color-ink); /* Đảm bảo chữ phụ vẫn rõ. */
+}
+
+.button-secondary:hover {
+	border-color: #aebdb0; /* Tăng tương phản viền khi hover. */
+	background: #edf1eb; /* Tô nền nhẹ để nhận biết tương tác. */
+	transform: translateY(-2px); /* Nâng nút ở mức tinh tế. */
+}
+
+.button:active,
+.nav-link-cta:active {
+	transform: scale(0.98); /* Tạo cảm giác nhấn nút rõ nhưng không quá mạnh. */
+}
+
+.hero-stats {
+	display: grid; /* Chia thống kê thành ba cột đều nhau. */
+	grid-template-columns: repeat(3, minmax(0, 1fr)); /* Giữ các chỉ số cân đối. */
+	gap: 1rem; /* Tạo khoảng cách giữa các số liệu. */
+	max-width: 500px; /* Không kéo cụm thống kê quá rộng. */
+	margin: 2.5rem 0 0; /* Tách thống kê khỏi CTA. */
+	padding: 1.35rem 0 0; /* Tạo vùng thở phía trên các con số. */
+	border-top: 1px solid var(--color-line); /* Phân tách thống kê với nội dung hành động. */
+	list-style: none; /* Bỏ dấu đầu dòng mặc định. */
+}
+
+.hero-stats li {
+	display: grid; /* Xếp số và nhãn thành hai dòng. */
+	gap: 0.15rem; /* Giữ số và nhãn gần nhau. */
+}
+
+.hero-stats strong {
+	font-size: 1.45rem; /* Làm con số dễ quét. */
+	line-height: 1.2; /* Giữ khối số liệu gọn. */
+}
+
+.hero-stats span {
+	color: var(--color-muted); /* Hạ mức ưu tiên của nhãn thống kê. */
+	font-size: 0.73rem; /* Giữ mô tả ngắn vừa một hàng trên desktop. */
+}
+
+.map-preview {
+	min-width: 0; /* Cho phép bản đồ co trong cột grid. */
+}
+
+.map-canvas {
+	position: relative; /* Làm khung định vị cho đường phố và marker. */
+	isolation: isolate; /* Giữ lớp đường phố và điểm đánh dấu trong khung. */
+	overflow: hidden; /* Cắt gọn các tuyến đường tại biên bản đồ. */
+	background-color: var(--color-map); /* Nền bản đồ trung tính. */
+	background-image: linear-gradient(36deg, transparent 48%, rgb(255 255 255 / 80%) 49%, rgb(255 255 255 / 80%) 51%, transparent 52%), linear-gradient(126deg, transparent 45%, rgb(255 255 255 / 70%) 46%, rgb(255 255 255 / 70%) 48%, transparent 49%), repeating-linear-gradient(0deg, transparent 0 48px, rgb(197 212 194 / 32%) 49px 50px); /* Vẽ các tuyến phố và lưới khu vực bằng CSS. */
+}
+
+.map-canvas-hero {
+	min-height: 410px; /* Đặt chiều cao bản đồ đủ để đọc các marker. */
+	border: 8px solid #ffffff; /* Tạo khung bản đồ sáng, rõ ràng. */
+	border-radius: var(--radius-lg); /* Bo khung theo ngôn ngữ giao diện. */
+	box-shadow: var(--shadow-soft); /* Tách bản đồ khỏi nền trang. */
+	transform: rotate(1deg); /* Tạo góc nghiêng rất nhẹ cho khung minh họa. */
+}
+
+.map-river {
+	position: absolute; /* Chỉ dùng định vị cho hình dạng địa lý trang trí. */
+	z-index: -1; /* Đặt dải nước phía sau đường phố và điểm đánh dấu. */
+	inset: -20% 44% -20% 42%; /* Mở rộng dải chéo vượt nhẹ khỏi khung bản đồ. */
+	transform: rotate(24deg); /* Tạo dòng sông chéo bằng transform tĩnh. */
+	border-inline: 14px solid rgb(130 184 190 / 35%); /* Tô hai bờ nước xanh nhạt. */
+	background: rgb(169 205 203 / 29%); /* Tạo màu nước nhẹ. */
+}
+
+.map-road {
+	position: absolute; /* Định vị tuyến đường trên bản đồ mô phỏng. */
+	z-index: -1; /* Đặt đường dưới marker và nhãn khu vực. */
+	display: block; /* Hiển thị mỗi tuyến như một dải. */
+	height: 11px; /* Giữ bề dày đường phố ổn định. */
+	border-block: 2px solid rgb(255 255 255 / 78%); /* Vẽ viền đường sáng. */
+	background: #d5dfd2; /* Tạo mặt đường dịu mắt. */
+	transform-origin: center; /* Quay tuyến quanh tâm hình. */
+}
+
+.road-one { width: 125%; inset-block-start: 29%; inset-inline-start: -10%; transform: rotate(-18deg); } /* Tuyến chéo phía trên bản đồ. */
+.road-two { width: 120%; inset-block-start: 66%; inset-inline-start: -8%; transform: rotate(13deg); } /* Tuyến chéo phía dưới bản đồ. */
+.road-three { width: 95%; inset-block-start: 48%; inset-inline-start: 23%; transform: rotate(72deg); } /* Tuyến dọc ở giữa bản đồ. */
+.road-four { width: 70%; inset-block-start: 17%; inset-inline-start: 7%; transform: rotate(48deg); } /* Nhánh đường phía trái. */
+.road-five { width: 72%; inset-block-start: 79%; inset-inline-start: 40%; transform: rotate(-54deg); } /* Nhánh đường phía phải. */
+
+.map-district {
+	position: absolute; /* Đặt tên khu vực trên nền bản đồ. */
+	z-index: -1; /* Giữ nhãn dưới các marker. */
+	color: #849486; /* Dùng màu chữ nền để marker nổi bật hơn. */
+	font-size: 0.63rem; /* Giữ tên khu vực làm nhãn phụ. */
+	font-weight: 750; /* Giúp tên vẫn đọc được trên nền nhiều đường. */
+	letter-spacing: 0; /* Không kéo giãn chữ tiếng Việt. */
+}
+
+.district-one { inset-block-start: 23%; inset-inline-start: 14%; } /* Nhãn khu An Bình. */
+.district-two { inset-block-start: 69%; inset-inline-start: 64%; } /* Nhãn khu Tân Phú. */
+.district-three { inset-block-start: 40%; inset-inline-start: 70%; } /* Nhãn khu Bình Minh. */
+
+.map-pin {
+	position: absolute; /* Marker là thành phần cần đặt tại tọa độ trên bản đồ. */
+	z-index: 1; /* Đặt marker phía trên đường phố. */
+	width: 17px; /* Kích thước chấm marker. */
+	height: 17px; /* Giữ marker hình tròn. */
+	border: 3px solid #ffffff; /* Tạo viền sáng tách khỏi nền. */
+	border-radius: 50%; /* Tạo marker tròn. */
+	box-shadow: 0 2px 7px rgb(32 49 43 / 20%); /* Giúp marker nổi trên các tuyến đường. */
+}
+
+.pin-food { background: var(--color-food); } /* Marker thực phẩm mang màu đỏ cam. */
+.pin-medical { background: var(--color-medical); } /* Marker y tế mang màu xanh dương. */
+.pin-shelter { background: var(--color-shelter); } /* Marker nơi ở mang màu xanh lá. */
+.pin-hero-food { inset-block-start: 24%; inset-inline-start: 55%; } /* Điểm thực phẩm trong hero. */
+.pin-hero-medical { inset-block-start: 55%; inset-inline-start: 76%; } /* Điểm y tế trong hero. */
+.pin-hero-shelter { inset-block-start: 72%; inset-inline-start: 37%; } /* Điểm nơi ở trong hero. */
+.pin-hero-food-two { inset-block-start: 40%; inset-inline-start: 27%; } /* Điểm thực phẩm thứ hai trong hero. */
+
+.map-callout {
+	position: absolute; /* Neo nhãn thông tin vào góc bản đồ. */
+	z-index: 2; /* Đặt nhãn phía trên các tuyến và marker. */
+	inset-block-start: 1.15rem; /* Cách mép trên bằng khoảng đệm cố định. */
+	inset-inline-start: 1.15rem; /* Cách mép trái bằng khoảng đệm cố định. */
+	display: grid; /* Xếp nội dung chú thích theo từng dòng. */
+	gap: 0.12rem; /* Giữ các dòng nội dung sát nhau. */
+	max-width: calc(100% - 2.3rem); /* Tránh nhãn vượt khỏi khung bản đồ. */
+	padding: 0.85rem 1rem; /* Tạo khoảng đọc thoải mái. */
+	border: 1px solid rgb(255 255 255 / 80%); /* Tách nhãn khỏi bản đồ. */
+	border-radius: var(--radius-sm); /* Bo nhẹ khung thông tin. */
+	background: rgb(255 255 255 / 92%); /* Giữ độ đọc trên nền bản đồ. */
+	box-shadow: 0 6px 18px rgb(32 49 43 / 9%); /* Tạo lớp nổi nhẹ cho nhãn. */
+}
+
+.callout-kicker {
+	color: var(--color-muted); /* Hạ mức ưu tiên của dòng nhãn. */
+	font-size: 0.56rem; /* Giữ chú thích gọn. */
+	font-weight: 750; /* Làm nhãn nhỏ vẫn rõ. */
+}
+
+.map-callout strong {
+	font-size: 0.94rem; /* Làm nổi bật tên khu vực. */
+}
+
+.map-callout > span:last-child {
+	color: var(--color-muted); /* Tô dịu thông tin số điểm. */
+	font-size: 0.7rem; /* Giữ thông tin phụ gọn. */
+}
+
+.map-legend {
+	position: absolute; /* Đặt chú giải sát mép dưới khung bản đồ. */
+	z-index: 2; /* Giữ chú giải phía trên nền bản đồ. */
+	inset-inline: 0.8rem; /* Chừa lề đều hai bên. */
+	inset-block-end: 0.8rem; /* Chừa lề dưới ổn định. */
+	display: flex; /* Xếp chú giải theo hàng. */
+	flex-wrap: wrap; /* Cho phép chú giải xuống hàng khi thiếu chỗ. */
+	justify-content: center; /* Căn nhóm nhãn về giữa. */
+	gap: 0.5rem 0.9rem; /* Tạo khoảng cách giữa các loại. */
+	padding: 0.7rem 0.8rem; /* Tạo vùng đọc cho legend. */
+	border: 1px solid rgb(255 255 255 / 84%); /* Tách chú giải khỏi nền. */
+	border-radius: var(--radius-sm); /* Bo góc nhẹ. */
+	background: rgb(255 255 255 / 90%); /* Nền sáng để chữ dễ đọc. */
+	color: var(--color-ink); /* Giữ nhãn có tương phản cao. */
+	font-size: 0.68rem; /* Kích thước gọn cho ba mục. */
+	font-weight: 650; /* Giữ nhãn dễ nhận diện. */
+}
+
+.map-legend span,
+.legend li {
+	display: inline-flex; /* Đặt chấm màu cạnh nhãn. */
+	align-items: center; /* Căn giữa chấm với chữ. */
+	gap: 0.38rem; /* Tạo khoảng cách chấm-nhãn nhất quán. */
+}
+
+.legend-dot {
+	display: inline-block; /* Hiển thị chấm màu theo kích thước cố định. */
+	width: 9px; /* Đặt chiều ngang chấm chú giải. */
+	height: 9px; /* Đặt chiều cao chấm chú giải. */
+	flex: 0 0 auto; /* Ngăn chấm co trong Flexbox. */
+	border-radius: 50%; /* Dùng chấm tròn làm mã màu dễ nhận biết. */
+}
+
+.food-dot { background: var(--color-food); } /* Mã màu thực phẩm. */
+.medical-dot { background: var(--color-medical); } /* Mã màu y tế. */
+.shelter-dot { background: var(--color-shelter); } /* Mã màu nơi ở. */
+
+.map-caption {
+	display: flex; /* Đặt ký hiệu vị trí cạnh chú thích. */
+	align-items: center; /* Căn chú thích theo chiều dọc. */
+	gap: 0.35rem; /* Tạo khoảng cách ký hiệu và chữ. */
+	margin: 0.9rem 0 0; /* Tách chú thích khỏi khung bản đồ. */
+	color: var(--color-muted); /* Dùng màu phụ cho ghi chú. */
+	font-size: 0.75rem; /* Giữ chú thích nhỏ hơn nội dung chính. */
+}
+
+.map-caption span {
+	color: var(--color-primary); /* Nhấn ký hiệu vị trí bằng màu thương hiệu. */
+	font-size: 1rem; /* Làm ký hiệu dễ nhận biết. */
+}
+
+.section-space {
+	padding-block: var(--space-5); /* Tạo khoảng cách dọc nhất quán cho section. */
+}
+
+.section-heading {
+	display: flex; /* Sắp xếp tiêu đề và mô tả section theo hàng. */
+	align-items: end; /* Căn mô tả với đáy cụm tiêu đề. */
+	justify-content: space-between; /* Đưa hai nhóm nội dung về hai phía. */
+	gap: 2rem; /* Giữ khoảng cách nếu nội dung dài. */
+	margin-bottom: 1.6rem; /* Tách heading khỏi nội dung bên dưới. */
+}
+
+.section-heading .eyebrow {
+	margin-bottom: 0.55rem; /* Thu gọn khoảng cách nhãn đến tiêu đề. */
+}
+
+.section-heading h2,
+.volunteer-copy h2 {
+	margin: 0; /* Bỏ lề mặc định của tiêu đề section. */
+	font-size: clamp(1.7rem, 3vw, 2.35rem); /* Cỡ chữ linh hoạt theo không gian. */
+	font-weight: 740; /* Tạo phân cấp tiêu đề rõ. */
+	line-height: 1.16; /* Giữ heading nhiều dòng gọn. */
+}
+
+.section-note {
+	max-width: 280px; /* Giới hạn độ dài ghi chú section. */
+	margin: 0 0 0.15rem; /* Căn nhẹ với tiêu đề. */
+	color: var(--color-muted); /* Phân biệt mô tả với heading. */
+	font-size: 0.88rem; /* Giữ ghi chú ngắn gọn. */
+}
+
+.map-layout {
+	display: grid; /* Chia khu vực bản đồ và danh sách điểm. */
+	grid-template-columns: minmax(0, 1.45fr) minmax(310px, 0.8fr); /* Ưu tiên chiều rộng cho bản đồ. */
+	gap: 1.2rem; /* Tạo khoảng tách giữa hai panel. */
+	align-items: stretch; /* Cân chiều cao hai cột. */
+}
+
+.map-panel,
+.needs-panel {
+	min-width: 0; /* Cho phép panel co trong lưới responsive. */
+	border: 1px solid var(--color-line); /* Định ranh giới cho khu vực chức năng. */
+	border-radius: var(--radius-md); /* Bo góc vừa phải cho panel. */
+	background: var(--color-surface); /* Tách panel khỏi nền trang. */
+}
+
+.map-panel {
+	display: flex; /* Xếp thanh công cụ, bản đồ và legend theo cột. */
+	flex-direction: column; /* Tạo luồng dọc cho các thành phần bản đồ. */
+	padding: 1rem; /* Chừa khoảng đệm trong panel. */
+}
+
+.map-toolbar {
+	display: flex; /* Đặt khu vực và trạng thái cập nhật hai đầu. */
+	align-items: center; /* Căn nội dung thanh công cụ theo giữa. */
+	justify-content: space-between; /* Phân tách tên khu vực và nhãn cập nhật. */
+	gap: 1rem; /* Tránh các nhãn đè nhau. */
+	padding: 0.1rem 0.15rem 0.9rem; /* Tạo vùng thở trước bản đồ. */
+}
+
+.map-toolbar > div {
+	display: flex; /* Đặt chấm hoạt động cạnh tên khu vực. */
+	align-items: center; /* Căn hai thành phần theo trục dọc. */
+	gap: 0.55rem; /* Tách dấu trạng thái khỏi tên. */
+	font-size: 0.88rem; /* Giữ tiêu đề bản đồ gọn. */
+}
+
+.live-indicator {
+	background: #4d9a66; /* Màu xanh báo khu vực đang hoạt động. */
+	box-shadow: 0 0 0 4px #e8f2e9; /* Tạo vòng nền tĩnh quanh chấm trạng thái. */
+}
+
+.sample-label {
+	color: var(--color-muted); /* Dùng màu phụ cho nhãn thời gian. */
+	font-size: 0.61rem; /* Giữ nhãn cập nhật nhỏ nhưng đọc được. */
+	font-weight: 750; /* Làm rõ đây là nhãn trạng thái. */
+}
+
+.map-canvas-large {
+	min-height: 420px; /* Bảo đảm không gian quan sát marker. */
+	flex: 1 1 auto; /* Cho bản đồ chiếm phần không gian còn lại. */
+	border-radius: var(--radius-sm); /* Bo nhẹ các góc trong panel. */
+}
+
+.map-marker {
+	position: absolute; /* Đặt marker theo tọa độ tương đối của bản đồ. */
+	z-index: 1; /* Giữ marker trên đường phố mô phỏng. */
+	display: grid; /* Căn số ở giữa marker. */
+	place-items: center; /* Căn số giữa cả hai trục. */
+	width: 38px; /* Tạo vùng chạm dễ bấm trên bản đồ. */
+	height: 38px; /* Giữ marker số có hình tròn. */
+	border: 3px solid #ffffff; /* Tách marker khỏi nền. */
+	border-radius: 50%; /* Tạo hình tròn dễ nhận ra. */
+	box-shadow: 0 4px 12px rgb(32 49 43 / 22%); /* Làm marker nổi rõ. */
+	color: #ffffff; /* Tạo tương phản cho số trong marker. */
+	font-size: 0.76rem; /* Giữ số dễ đọc trong marker nhỏ. */
+	font-weight: 750; /* Nhấn số thứ tự. */
+	transition: transform var(--transition-fast), box-shadow var(--transition-fast); /* Phản hồi hover nhanh. */
+}
+
+.map-marker:hover {
+	z-index: 2; /* Đưa marker đang chọn lên trước các marker khác. */
+	box-shadow: 0 7px 16px rgb(32 49 43 / 26%); /* Tăng nhẹ độ nổi. */
+	transform: scale(1.1); /* Phóng marker nhẹ khi hover. */
+}
+
+.map-marker:active {
+	transform: scale(0.96); /* Phản hồi khi nhấn marker. */
+}
+
+.marker-food { background: var(--color-food); } /* Nền marker cho nhu cầu thực phẩm. */
+.marker-medical { background: var(--color-medical); } /* Nền marker cho nhu cầu y tế. */
+.marker-shelter { background: var(--color-shelter); } /* Nền marker cho nhu cầu nơi ở. */
+.marker-one { inset-block-start: 27%; inset-inline-start: 29%; } /* Vị trí điểm Nhà văn hóa An Bình. */
+.marker-two { inset-block-start: 49%; inset-inline-start: 66%; } /* Vị trí điểm Trạm cộng đồng Tân Phú. */
+.marker-three { inset-block-start: 70%; inset-inline-start: 45%; } /* Vị trí điểm Trường tiểu học Bình Minh. */
+.marker-four { inset-block-start: 37%; inset-inline-start: 82%; } /* Vị trí điểm Chợ An Bình. */
+
+.map-center {
+	position: absolute; /* Đặt dấu tâm ở giữa khu vực bản đồ. */
+	inset-block-start: 51%; /* Căn vị trí gần giữa theo trục dọc. */
+	inset-inline-start: 50%; /* Căn vị trí giữa theo trục ngang. */
+	display: grid; /* Căn dấu cộng vào tâm vòng tròn. */
+	place-items: center; /* Căn giữa dấu cộng. */
+	width: 22px; /* Tạo vòng định vị nhỏ. */
+	height: 22px; /* Giữ vòng định vị tròn. */
+	border: 2px solid #ffffff; /* Tạo viền sáng cho tâm. */
+	border-radius: 50%; /* Tạo hình tròn. */
+	background: var(--color-primary); /* Dùng màu thương hiệu cho vị trí trung tâm. */
+	box-shadow: 0 2px 8px rgb(32 49 43 / 24%); /* Tăng khả năng nhận biết trên nền. */
+	color: #ffffff; /* Giữ dấu cộng tương phản cao. */
+	font-size: 0.78rem; /* Cỡ dấu cộng cân với vòng tròn. */
+	line-height: 1; /* Căn ký hiệu chính xác. */
+	transform: translate(-50%, -50%); /* Căn tâm phần tử tại giao điểm. */
+}
+
+.legend {
+	display: flex; /* Xếp các loại hỗ trợ theo hàng. */
+	flex-wrap: wrap; /* Xuống hàng khi chiều ngang hạn chế. */
+	gap: 0.7rem 1.4rem; /* Tạo khoảng cách giữa các nhãn. */
+	margin: 0; /* Bỏ lề mặc định của danh sách. */
+	padding: 0.9rem 0.2rem 0.1rem; /* Tách legend khỏi bản đồ. */
+	color: var(--color-muted); /* Dùng màu phụ cho chú giải. */
+	font-size: 0.76rem; /* Giữ legend gọn. */
+	font-weight: 650; /* Giữ nhãn dễ quét. */
+	list-style: none; /* Bỏ bullet mặc định. */
+}
+
+.needs-panel {
+	padding: 1.1rem; /* Tạo khoảng đệm đồng đều cho danh sách điểm. */
+}
+
+.needs-heading {
+	display: flex; /* Đặt tiêu đề danh sách cạnh bộ đếm. */
+	align-items: center; /* Căn giữa theo chiều dọc. */
+	justify-content: space-between; /* Tách tên danh sách và số lượng. */
+	gap: 0.7rem; /* Giữ khoảng cách khi panel hẹp. */
+	padding-bottom: 0.85rem; /* Tách heading khỏi mục đầu tiên. */
+}
+
+.needs-heading h3 {
+	margin: 0; /* Bỏ lề mặc định. */
+	font-size: 1rem; /* Phân cấp vừa phải cho tiêu đề panel. */
+}
+
+.needs-count {
+	padding: 0.25rem 0.5rem; /* Tạo nhãn số lượng gọn. */
+	border-radius: 4px; /* Bo góc nhỏ cho nhãn. */
+	background: #edf2eb; /* Nền nhãn trung tính. */
+	color: var(--color-primary); /* Nhấn bộ đếm bằng màu thương hiệu. */
+	font-size: 0.68rem; /* Giữ số lượng nhỏ. */
+	font-weight: 750; /* Làm bộ đếm dễ nhìn. */
+}
+
+.need-item {
+	display: grid; /* Chia mỗi nhu cầu thành icon, nội dung và khoảng cách. */
+	grid-template-columns: 36px minmax(0, 1fr) auto; /* Giữ cột icon và khoảng cách ổn định. */
+	align-items: center; /* Căn các cột theo chiều dọc. */
+	gap: 0.7rem; /* Tách các nhóm thông tin. */
+	padding: 0.82rem 0; /* Tạo vùng đọc giữa các mục. */
+	border-top: 1px solid #edf0ec; /* Phân tách từng điểm hỗ trợ. */
+	scroll-margin-top: 1rem; /* Giữ mục đến từ marker cách mép viewport. */
+}
+
+.need-icon {
+	display: grid; /* Căn biểu tượng giữa ô màu. */
+	place-items: center; /* Căn giữa theo hai trục. */
+	width: 34px; /* Kích thước ô icon. */
+	height: 34px; /* Giữ ô icon vuông. */
+	border-radius: 9px; /* Bo vừa phải cho ô biểu tượng. */
+	background: color-mix(in srgb, var(--need-color) 12%, white); /* Tạo nền nhạt theo loại hỗ trợ. */
+	color: var(--need-color); /* Đồng bộ icon với màu nhu cầu. */
+	font-size: 1.05rem; /* Cỡ ký hiệu dễ nhìn. */
+	font-weight: 750; /* Giữ biểu tượng đơn giản nhưng rõ. */
+}
+
+.need-food { --need-color: var(--color-food); } /* Gắn màu thực phẩm cho card nhu cầu. */
+.need-medical { --need-color: var(--color-medical); } /* Gắn màu y tế cho card nhu cầu. */
+.need-shelter { --need-color: var(--color-shelter); } /* Gắn màu nơi ở cho card nhu cầu. */
+
+.need-copy {
+	min-width: 0; /* Cho phép nội dung xuống dòng thay vì tràn ngang. */
+}
+
+.need-category {
+	margin: 0; /* Bỏ lề mặc định của nhãn loại. */
+	color: var(--need-color, var(--color-muted)); /* Dùng màu riêng theo loại hỗ trợ. */
+	font-size: 0.58rem; /* Giữ nhãn phụ ngắn gọn. */
+	font-weight: 800; /* Tăng khả năng nhận dạng loại nhu cầu. */
+}
+
+.need-copy h4 {
+	overflow-wrap: anywhere; /* Cho phép từ dài xuống dòng trong panel hẹp. */
+	margin: 0.1rem 0 0; /* Giữ tiêu đề sát với nhãn loại. */
+	font-size: 0.82rem; /* Giữ tiêu đề nhu cầu dễ quét. */
+	line-height: 1.35; /* Tạo khoảng đọc đủ thoáng. */
+}
+
+.need-copy p {
+	margin: 0.18rem 0 0; /* Tách địa điểm khỏi tiêu đề một chút. */
+	color: var(--color-muted); /* Phân cấp địa điểm thấp hơn. */
+	font-size: 0.68rem; /* Giữ thông tin địa điểm gọn. */
+}
+
+.need-distance {
+	align-self: start; /* Căn khoảng cách với phần đầu nội dung. */
+	padding-top: 0.1rem; /* Căn quang học với dòng tiêu đề. */
+	color: var(--color-muted); /* Giữ khoảng cách là thông tin phụ. */
+	font-size: 0.65rem; /* Trình bày khoảng cách nhỏ gọn. */
+	white-space: nowrap; /* Giữ số và đơn vị cùng một hàng. */
+}
+
+.sample-disclaimer {
+	margin: 0.55rem 0 0; /* Tách lưu ý dữ liệu khỏi danh sách. */
+	color: var(--color-muted); /* Dùng màu dịu cho chú thích. */
+	font-size: 0.65rem; /* Giữ disclaimer không lấn át nội dung chính. */
+}
+
+.support-section {
+	margin-top: var(--space-4); /* Tạo nhịp chuyển từ bản đồ sang loại hỗ trợ. */
+	padding-block: var(--space-6); /* Tạo dải nền section thoáng. */
+	background: #eaf0e8; /* Phân vùng nội dung bằng sắc xanh xám nhạt. */
+}
+
+.support-grid {
+	display: grid; /* Tạo lưới ba thẻ theo nhóm nhu cầu. */
+	grid-template-columns: repeat(3, minmax(0, 1fr)); /* Chia đều card trên desktop. */
+	gap: 1rem; /* Tạo khoảng cách cân đối giữa card. */
+}
+
+.support-card {
+	position: relative; /* Neo số thứ tự trang trí trong từng card. */
+	display: flex; /* Sắp xếp nội dung card theo chiều dọc. */
+	flex-direction: column; /* Đưa nhãn, tiêu đề và mô tả thành cột. */
+	align-items: flex-start; /* Căn nội dung về đầu card. */
+	min-height: 260px; /* Giữ card đủ không gian cho nội dung. */
+	overflow: hidden; /* Giữ trang trí nằm trong khung card. */
+	padding: 1.45rem; /* Tạo khoảng đệm dễ đọc. */
+	border: 1px solid rgb(32 49 43 / 6%); /* Định ranh giới nhẹ cho card. */
+	border-radius: var(--radius-md); /* Bo góc card theo hệ thống. */
+	background: var(--color-surface); /* Tách card khỏi dải nền section. */
+	box-shadow: var(--shadow-card); /* Tạo độ nổi nhẹ. */
+	transition: transform var(--transition-card), box-shadow var(--transition-card), border-color var(--transition-card); /* Dùng easing mềm cho tương tác card. */
+}
+
+.support-card:hover {
+	border-color: color-mix(in srgb, var(--card-color) 30%, white); /* Nhấn viền theo màu loại hỗ trợ. */
+	box-shadow: var(--shadow-hover); /* Tăng chiều sâu khi trỏ tới card. */
+	transform: translateY(-5px); /* Nâng card vừa đủ để biểu thị tương tác. */
+}
+
+.support-card-food { --card-color: var(--color-food); } /* Màu chủ đạo cho card thực phẩm. */
+.support-card-medical { --card-color: var(--color-medical); } /* Màu chủ đạo cho card y tế. */
+.support-card-shelter { --card-color: var(--color-shelter); } /* Màu chủ đạo cho card nơi ở. */
+
+.support-symbol {
+	display: grid; /* Căn số thứ tự vào giữa nền biểu tượng. */
+	place-items: center; /* Căn giữa hai trục. */
+	width: 38px; /* Kích thước ô số thứ tự. */
+	height: 38px; /* Giữ ô số vuông. */
+	margin-bottom: 1.15rem; /* Tách số thứ tự khỏi nhãn loại. */
+	border-radius: 10px; /* Bo góc ô biểu tượng. */
+	background: color-mix(in srgb, var(--card-color) 12%, white); /* Tô nền nhạt theo màu nhu cầu. */
+	color: var(--card-color); /* Đồng bộ số thứ tự với loại hỗ trợ. */
+	font-size: 0.74rem; /* Giữ số gọn. */
+	font-weight: 800; /* Làm số rõ. */
+}
+
+.support-card .need-category {
+	color: var(--card-color); /* Liên kết màu nhãn với card. */
+}
+
+.support-card h3 {
+	margin: 0.35rem 0 0; /* Đặt tiêu đề sát nhãn loại. */
+	font-size: 1.23rem; /* Tạo điểm nhấn vừa phải trong card. */
+	line-height: 1.3; /* Giữ tiêu đề gọn khi xuống dòng. */
+	transition: color var(--transition-fast); /* Làm chuyển màu tiêu đề mượt. */
+}
+
+.support-card:hover h3 {
+	color: var(--card-color); /* Nhấn nội dung card tương ứng khi hover. */
+}
+
+.support-card > p:not(.need-category) {
+	margin: 0.6rem 0 1.2rem; /* Tạo khoảng đọc cho mô tả card. */
+	color: var(--color-muted); /* Dùng màu phụ cho nội dung giải thích. */
+	font-size: 0.85rem; /* Giữ đoạn mô tả gọn. */
+}
+
+.support-card > a {
+	display: inline-flex; /* Đặt nhãn và mũi tên cùng hàng. */
+	align-items: center; /* Căn ký hiệu với chữ. */
+	gap: 0.45rem; /* Tách ký hiệu khỏi nhãn. */
+	margin-top: auto; /* Căn liên kết ở cuối card. */
+	color: var(--color-primary); /* Thể hiện đây là hành động liên kết. */
+	font-size: 0.78rem; /* Giữ CTA card gọn. */
+	font-weight: 750; /* Tăng độ nhận biết hành động. */
+	transition: color var(--transition-fast), gap var(--transition-fast); /* Phản hồi nhẹ cho liên kết card. */
+}
+
+.support-card > a:hover {
+	gap: 0.65rem; /* Dịch mũi tên nhẹ để gợi hướng điều hướng. */
+	color: var(--card-color); /* Nhấn loại hỗ trợ khi hover liên kết. */
+}
+
+.volunteer-banner {
+	position: relative; /* Neo dấu hiệu trang trí trong dải CTA. */
+	display: flex; /* Đặt nội dung và CTA theo hàng. */
+	align-items: center; /* Căn CTA với nội dung. */
+	justify-content: space-between; /* Đưa lời mời và nút về hai phía. */
+	gap: 2rem; /* Tạo khoảng cách an toàn giữa nội dung và CTA. */
+	overflow: hidden; /* Cắt phần trang trí không lọt khỏi banner. */
+	margin-top: var(--space-6); /* Tách banner khỏi dải card. */
+	margin-bottom: var(--space-6); /* Tạo khoảng thở trước footer. */
+	padding: clamp(1.7rem, 4vw, 3rem); /* Điều chỉnh đệm theo khung màn hình. */
+	border-radius: var(--radius-lg); /* Bo góc banner. */
+	background: var(--color-primary); /* Tạo dải CTA có tương phản cao. */
+	color: #ffffff; /* Đặt chữ sáng trên nền xanh đậm. */
+}
+
+.volunteer-copy {
+	position: relative; /* Giữ nội dung phía trên dấu trang trí. */
+	z-index: 1; /* Đặt chữ trước phần trang trí nền. */
+	max-width: 620px; /* Giữ lời mời không kéo quá rộng. */
+}
+
+.volunteer-copy .eyebrow {
+	margin-bottom: 0.7rem; /* Tách eyebrow khỏi heading. */
+	color: #b9d7c5; /* Tạo màu nhãn đủ tương phản trên nền xanh. */
+}
+
+.volunteer-copy h2 {
+	font-size: clamp(1.8rem, 3.5vw, 2.65rem); /* Chỉnh heading banner theo chiều rộng. */
+}
+
+.volunteer-copy > p:last-child {
+	max-width: 480px; /* Giới hạn độ dài dòng mô tả. */
+	margin: 0.8rem 0 0; /* Tách mô tả khỏi tiêu đề. */
+	color: #d7e5dc; /* Dùng sắc sáng dịu cho nội dung phụ. */
+	font-size: 0.9rem; /* Giữ mô tả nhỏ hơn heading. */
+}
+
+.button-light {
+	position: relative; /* Giữ nút phía trên dấu trang trí. */
+	z-index: 1; /* Đảm bảo nút có thể tương tác. */
+	flex: 0 0 auto; /* Không để nút co quá nhỏ. */
+	background: #ffffff; /* Tạo nút sáng tương phản trên banner. */
+	color: var(--color-primary-dark); /* Giữ chữ nút có tương phản cao. */
+}
+
+.button-light:hover {
+	background: #edf4ee; /* Đổi nền nhẹ khi hover. */
+	box-shadow: 0 8px 18px rgb(10 39 28 / 20%); /* Tạo bóng vừa phải. */
+	transform: translateY(-2px); /* Nâng nút nhẹ khi trỏ tới. */
+}
+
+.banner-decoration {
+	position: absolute; /* Đặt chữ trang trí phía sau nội dung. */
+	inset-inline-end: 2rem; /* Chừa lề phải cố định trong banner. */
+	inset-block-end: -3.2rem; /* Đưa một phần chữ ra khỏi khung để làm họa tiết. */
+	color: rgb(255 255 255 / 7%); /* Giảm độ tương phản để không cạnh tranh nội dung. */
+	font-size: 13rem; /* Tạo mảng chữ nền lớn. */
+	font-weight: 800; /* Giữ hình khối rõ dù opacity thấp. */
+	line-height: 1; /* Tránh khoảng trống quanh chữ trang trí. */
+	pointer-events: none; /* Không cản trở thao tác với nội dung. */
+}
+
+.site-footer {
+	display: flex; /* Xếp thương hiệu, mô tả và ghi chú theo hàng. */
+	align-items: center; /* Căn giữa nội dung footer theo chiều dọc. */
+	justify-content: space-between; /* Phân tách các nhóm footer. */
+	gap: 1rem; /* Giữ khoảng cách khi các nhóm xuống hàng. */
+	padding-block: 1.5rem 2rem; /* Tạo khoảng thở cho cuối trang. */
+	border-top: 1px solid var(--color-line); /* Phân tách footer khỏi nội dung chính. */
+	color: var(--color-muted); /* Dùng màu phụ cho footer. */
+	font-size: 0.74rem; /* Giữ thông tin footer nhỏ gọn. */
+}
+
+.footer-brand {
+	color: var(--color-ink); /* Giữ tên thương hiệu nổi bật hơn ghi chú. */
+	font-size: 0.82rem; /* Tăng nhẹ cỡ tên thương hiệu. */
+	font-weight: 750; /* Nhấn tên trong footer. */
+}
+
+.site-footer p {
+	margin: 0; /* Bỏ lề mặc định của đoạn footer. */
+}
+
+@keyframes header-arrive {
+	from { opacity: 0; } /* Header bắt đầu trong suốt. */
+	to { opacity: 1; } /* Header hiện hoàn toàn. */
+}
+
+@keyframes hero-arrive {
+	from { opacity: 0; transform: translateY(16px); } /* Hero bắt đầu mờ và thấp hơn một chút. */
+	to { opacity: 1; transform: translateY(0); } /* Hero về vị trí tự nhiên và rõ nét. */
+}
+
+@keyframes copy-arrive {
+	from { opacity: 0; transform: translateY(10px); } /* Từng khối chữ bắt đầu mờ và thấp. */
+	to { opacity: 1; transform: translateY(0); } /* Từng khối chữ trở về vị trí ban đầu. */
+}
+
+@keyframes reveal-on-scroll {
+	from { opacity: 0; transform: translateY(18px); } /* Section cuộn vào từ thấp hơn với độ mờ. */
+	to { opacity: 1; transform: translateY(0); } /* Section hiện rõ khi đi vào vùng nhìn. */
+}
+
+@supports (animation-timeline: view()) {
+	.map-section,
+	.support-section,
+	.volunteer-banner {
+		animation: reveal-on-scroll linear both; /* Dùng nhịp cuộn để làm section hiện dần. */
+		animation-timeline: view(); /* Gắn tiến trình animation với vùng nhìn của trình duyệt hỗ trợ. */
+		animation-range: entry 0% entry 35%; /* Giới hạn hiệu ứng trong đoạn đầu khi section xuất hiện. */
+	}
+}
+
+@media (max-width: 900px) {
+	.hero {
+		grid-template-columns: minmax(0, 1fr) minmax(0, 0.92fr); /* Thu hẹp khoảng cột ở tablet. */
+		gap: 2rem; /* Giữ hero cân đối trong màn hình vừa. */
+	}
+
+	.hero h1 {
+		font-size: clamp(2.5rem, 5.2vw, 3.6rem); /* Giảm heading tương ứng vùng chữ nhỏ hơn. */
+	}
+
+	.map-canvas-hero {
+		min-height: 365px; /* Co chiều cao minh họa trên tablet. */
+	}
+
+	.map-layout {
+		grid-template-columns: minmax(0, 1.25fr) minmax(285px, 0.9fr); /* Giữ danh sách điểm đủ đọc. */
+		gap: 0.9rem; /* Thu khoảng cách giữa panel. */
+	}
+
+	.needs-panel {
+		padding: 0.85rem; /* Tiết kiệm không gian trong cột danh sách. */
+	}
+
+	.need-item {
+		grid-template-columns: 32px minmax(0, 1fr); /* Chuyển khoảng cách xuống dòng riêng nếu hẹp. */
+	}
+
+	.need-distance {
+		grid-column: 2; /* Đặt khoảng cách dưới phần địa điểm trên tablet. */
+		padding-top: 0; /* Bỏ căn chỉnh theo hàng đầu. */
+	}
+}
+
+@media (max-width: 680px) {
+	.page-shell {
+		width: min(100% - 2rem, 540px); /* Giữ lề mobile đủ rộng mà không tràn ngang. */
+	}
+
+	.site-header {
+		align-items: flex-start; /* Cho thương hiệu và navigation xếp gọn theo chiều dọc. */
+		flex-direction: column; /* Thu header thành hai hàng trên điện thoại. */
+		gap: 0.8rem; /* Giữ khoảng cách giữa hai hàng. */
+		width: calc(100% - 2rem); /* Đồng bộ lề với nội dung mobile. */
+		min-height: 0; /* Bỏ chiều cao tối thiểu của desktop. */
+		padding-block: 1rem 0.7rem; /* Chừa khoảng thở quanh header. */
+	}
+
+	.primary-nav {
+		width: 100%; /* Cho navigation dùng hết chiều ngang. */
+		justify-content: space-between; /* Phân tách hai lựa chọn trên mobile. */
+		gap: 0.4rem; /* Thu gọn khoảng cách điều hướng. */
+	}
+
+	.nav-link {
+		min-height: 42px; /* Giữ vùng chạm đủ lớn. */
+		padding: 0.55rem 0.7rem; /* Tối ưu độ rộng nhãn trên màn nhỏ. */
+		font-size: 0.78rem; /* Tránh navigation vượt chiều ngang. */
+	}
+
+	.hero {
+		grid-template-columns: minmax(0, 1fr); /* Chuyển hero thành một cột. */
+		gap: 2.1rem; /* Tách nội dung với bản đồ. */
+		padding-block: 3rem 2.6rem; /* Rút gọn khoảng đệm đầu trang. */
+	}
+
+	.hero h1 {
+		font-size: clamp(2.5rem, 11vw, 3.5rem); /* Cỡ chữ thích ứng với điện thoại. */
+	}
+
+	.hero-description {
+		font-size: 0.95rem; /* Giữ đoạn giới thiệu dễ đọc trên khung nhỏ. */
+	}
+
+	.button-group {
+		display: grid; /* Xếp CTA thành các hàng dễ chạm. */
+		grid-template-columns: minmax(0, 1fr); /* Dùng một cột cho từng nút. */
+	}
+
+	.button {
+		width: 100%; /* Mở rộng CTA để dễ bấm bằng ngón tay. */
+		min-height: 52px; /* Đảm bảo chiều cao vùng tương tác. */
+	}
+
+	.hero-stats {
+		gap: 0.55rem; /* Thu khoảng cách giữa thống kê trên màn nhỏ. */
+		margin-top: 2rem; /* Giữ nhịp dọc cân đối. */
+	}
+
+	.hero-stats strong {
+		font-size: 1.25rem; /* Giảm nhẹ số liệu để vừa các cột. */
+	}
+
+	.hero-stats span {
+		max-width: 100px; /* Cho nhãn thống kê xuống dòng đúng vùng cột. */
+		font-size: 0.66rem; /* Thu nhãn phụ trên mobile. */
+	}
+
+	.map-canvas-hero {
+		min-height: 340px; /* Giữ bản đồ hero dễ quan sát trên điện thoại. */
+		transform: none; /* Bỏ xoay khung để tránh lấn vùng nhìn. */
+	}
+
+	.map-callout {
+		inset-block-start: 0.75rem; /* Thu lề nhãn trên bản đồ mobile. */
+		inset-inline-start: 0.75rem; /* Thu lề nhãn trên bản đồ mobile. */
+		padding: 0.65rem 0.75rem; /* Giảm kích thước nhãn. */
+	}
+
+	.map-legend {
+		inset-inline: 0.5rem; /* Giữ chú giải trong khung hẹp. */
+		inset-block-end: 0.5rem; /* Thu lề dưới trên mobile. */
+		gap: 0.35rem 0.6rem; /* Co khoảng cách giữa nhãn. */
+		font-size: 0.61rem; /* Thu chữ chú giải nhưng vẫn đọc được. */
+	}
+
+	.section-space {
+		padding-block: 2rem; /* Rút gọn khoảng cách section trên mobile. */
+	}
+
+	.section-heading {
+		align-items: flex-start; /* Xếp tiêu đề và ghi chú theo luồng tự nhiên. */
+		flex-direction: column; /* Chuyển heading thành một cột. */
+		gap: 0.55rem; /* Thu khoảng cách giữa hai phần. */
+		margin-bottom: 1.2rem; /* Tách heading khỏi nội dung. */
+	}
+
+	.section-heading h2 {
+		font-size: 1.8rem; /* Giữ tiêu đề section vừa với điện thoại. */
+	}
+
+	.section-note {
+		max-width: 100%; /* Cho ghi chú sử dụng chiều rộng sẵn có. */
+	}
+
+	.map-layout {
+		grid-template-columns: minmax(0, 1fr); /* Xếp bản đồ rồi danh sách theo một cột. */
+	}
+
+	.map-panel {
+		padding: 0.75rem; /* Thu lề panel bản đồ. */
+	}
+
+	.map-canvas-large {
+		min-height: 340px; /* Giữ marker lớn và dễ bấm trên mobile. */
+	}
+
+	.needs-panel {
+		padding: 1rem; /* Tăng khoảng đệm danh sách sau khi chuyển một cột. */
+	}
+
+	.need-item {
+		grid-template-columns: 36px minmax(0, 1fr) auto; /* Đưa khoảng cách trở lại cùng hàng khi có đủ chiều rộng. */
+	}
+
+	.need-distance {
+		grid-column: auto; /* Khôi phục cột khoảng cách riêng. */
+		padding-top: 0.1rem; /* Căn lại với tiêu đề nhu cầu. */
+	}
+
+	.support-section {
+		margin-top: 1.5rem; /* Thu khoảng cách phía trên dải hỗ trợ. */
+		padding-block: 2.8rem; /* Giữ dải nền đủ thoáng trên mobile. */
+	}
+
+	.support-grid {
+		grid-template-columns: minmax(0, 1fr); /* Xếp mỗi card thành một hàng. */
+	}
+
+	.support-card {
+		min-height: 0; /* Cho card cao theo nội dung thực tế. */
+		padding: 1.25rem; /* Giảm lề card một chút. */
+	}
+
+	.volunteer-banner {
+		align-items: flex-start; /* Căn nội dung banner theo đầu. */
+		flex-direction: column; /* Xếp CTA dưới phần giới thiệu. */
+		gap: 1.35rem; /* Tạo khoảng cách an toàn giữa nội dung và CTA. */
+		margin-top: 2.8rem; /* Thu lề trên banner. */
+		margin-bottom: 2.8rem; /* Thu lề dưới banner. */
+		padding: 1.6rem; /* Giữ nội dung gọn trong khung. */
+	}
+
+	.button-light {
+		width: 100%; /* Tạo nút CTA rộng, dễ chạm. */
+	}
+
+	.banner-decoration {
+		inset-inline-end: 0.5rem; /* Giảm lấn vào vùng nội dung trên mobile. */
+		inset-block-end: -1.8rem; /* Điều chỉnh họa tiết theo banner thấp. */
+		font-size: 8rem; /* Thu họa tiết trang trí. */
+	}
+
+	.site-footer {
+		align-items: flex-start; /* Xếp các mục footer theo đầu. */
+		flex-direction: column; /* Chuyển footer thành một cột. */
+		gap: 0.35rem; /* Thu khoảng cách giữa các mục. */
+		padding-block: 1.2rem 1.5rem; /* Giữ lề cuối trang vừa phải. */
+	}
+}
+
+@media (max-width: 380px) {
+	.brand-copy strong {
+		font-size: 0.9rem; /* Thu tên thương hiệu với màn hình rất nhỏ. */
+	}
+
+	.nav-link {
+		padding-inline: 0.5rem; /* Tránh hai liên kết điều hướng chạm sát nhau. */
+		font-size: 0.72rem; /* Giữ navigation vừa chiều ngang. */
+	}
+
+	.need-item {
+		grid-template-columns: 32px minmax(0, 1fr); /* Cho khoảng cách xuống dòng ở điện thoại nhỏ. */
+	}
+
+	.need-distance {
+		grid-column: 2; /* Đặt khoảng cách dưới địa điểm. */
+		padding-top: 0; /* Căn sát thông tin điểm. */
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		scroll-behavior: auto !important; /* Tắt cuộn mượt khi người dùng yêu cầu giảm chuyển động. */
+		animation-duration: 0.01ms !important; /* Rút gọn animation còn mức tối thiểu. */
+		animation-iteration-count: 1 !important; /* Ngăn lặp hiệu ứng. */
+		transition-duration: 0.01ms !important; /* Tắt transition không cần thiết. */
+	}
+}

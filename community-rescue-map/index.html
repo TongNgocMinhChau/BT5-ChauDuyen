@@ -1,0 +1,231 @@
+<!doctype html>
+<!-- Khai báo tài liệu HTML5 để trình duyệt hiển thị đúng chuẩn. -->
+<html lang="vi">
+<!-- Đặt tiếng Việt làm ngôn ngữ chính cho nội dung và trình đọc màn hình. -->
+<head>
+  <!-- Nhóm metadata và tài nguyên dùng chung của trang. -->
+  <meta charset="utf-8">
+  <!-- Bảo đảm tiếng Việt hiển thị đúng trên mọi thiết bị. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Giúp bố cục thích ứng theo chiều rộng màn hình thực tế. -->
+  <meta name="theme-color" content="#f5f7f2">
+  <!-- Đồng bộ màu thanh trình duyệt với nền giao diện. -->
+  <meta name="description" content="Community Rescue kết nối điểm cần hỗ trợ với những người sẵn sàng chung tay.">
+  <!-- Mô tả ngắn gọn nội dung website trên công cụ tìm kiếm. -->
+  <title>Community Rescue | Bản đồ cứu trợ cộng đồng</title>
+  <!-- Đặt tiêu đề dễ nhận biết cho trang chủ. -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Dùng stylesheet chung cho cả trang chủ và trang tình nguyện viên. -->
+</head>
+<body>
+  <!-- Bỏ qua điều hướng để người dùng bàn phím đến thẳng nội dung. -->
+  <a class="skip-link" href="#main-content">Bỏ qua điều hướng</a>
+
+  <!-- Header chứa nhận diện thương hiệu và hai liên kết điều hướng chính. -->
+  <header class="site-header">
+    <!-- Giới thiệu thương hiệu bằng biểu tượng CSS và tên website. -->
+    <a class="brand" href="index.html" aria-label="Community Rescue, về trang bản đồ">
+      <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+      <span class="brand-copy">
+        <strong>Community Rescue</strong>
+        <small>Kết nối để cùng giúp đỡ</small>
+      </span>
+    </a>
+    <!-- Điều hướng chỉ đến bản đồ và đăng ký tình nguyện viên. -->
+    <nav class="primary-nav" aria-label="Điều hướng chính">
+      <a class="nav-link is-current" href="index.html" aria-current="page">Bản đồ</a>
+      <a class="nav-link nav-link-cta" href="volunteer.html">Đăng ký tình nguyện viên</a>
+    </nav>
+  </header>
+
+  <!-- Main bao bọc toàn bộ nội dung chính của trang chủ. -->
+  <main id="main-content">
+    <!-- Hero giới thiệu sứ mệnh và đưa bản đồ cứu trợ vào tầm mắt ngay lập tức. -->
+    <section class="hero page-shell" aria-labelledby="hero-title">
+      <!-- Nội dung chữ của phần mở đầu. -->
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> Chung tay trong lúc cần nhất</p>
+        <!-- Tiêu đề truyền đạt rõ chức năng kết nối của nền tảng. -->
+        <h1 id="hero-title">Một điểm cần giúp.<br><span>Nhiều người sẵn lòng.</span></h1>
+        <p class="hero-description">Community Rescue kết nối những gia đình đang cần hỗ trợ với cộng đồng quanh họ. Tìm nhu cầu gần bạn, chọn cách phù hợp và cùng tạo nên khác biệt thiết thực.</p>
+        <!-- CTA dẫn đến trang tình nguyện viên; liên kết phụ đưa thẳng đến bản đồ. -->
+        <div class="button-group">
+          <a class="button button-primary" href="volunteer.html">Đăng ký tình nguyện viên <span aria-hidden="true">↗</span></a>
+          <a class="button button-secondary" href="#rescue-map">Khám phá bản đồ <span aria-hidden="true">↓</span></a>
+        </div>
+        <!-- Con số mẫu giúp người xem nắm nhanh hoạt động hiện tại. -->
+        <ul class="hero-stats" aria-label="Tổng quan hoạt động">
+          <li><strong>18</strong><span>điểm đang cần hỗ trợ</span></li>
+          <li><strong>06</strong><span>phường đã kết nối</span></li>
+          <li><strong>42</strong><span>tình nguyện viên</span></li>
+        </ul>
+      </div>
+
+      <!-- Minh họa bản đồ nhẹ, không tải ảnh hay gọi dịch vụ bản đồ bên ngoài. -->
+      <aside class="map-preview" aria-label="Tóm tắt bản đồ cứu trợ">
+        <!-- Khung bản đồ CSS có các đường phố và marker nhu cầu mẫu. -->
+        <div class="map-canvas map-canvas-hero" aria-label="Bản đồ mô phỏng khu vực An Bình">
+          <span class="map-district district-one" aria-hidden="true">AN BÌNH</span>
+          <span class="map-district district-two" aria-hidden="true">TÂN PHÚ</span>
+          <span class="map-river" aria-hidden="true"></span>
+          <span class="map-road road-one" aria-hidden="true"></span>
+          <span class="map-road road-two" aria-hidden="true"></span>
+          <span class="map-road road-three" aria-hidden="true"></span>
+          <span class="map-road road-four" aria-hidden="true"></span>
+          <span class="map-pin pin-food pin-hero-food" role="img" aria-label="Điểm cần thực phẩm"></span>
+          <span class="map-pin pin-medical pin-hero-medical" role="img" aria-label="Điểm cần hỗ trợ y tế"></span>
+          <span class="map-pin pin-shelter pin-hero-shelter" role="img" aria-label="Điểm cần nơi ở"></span>
+          <span class="map-pin pin-food pin-hero-food-two" role="img" aria-label="Điểm cần thực phẩm thứ hai"></span>
+          <!-- Nhãn nổi bật giải thích khu vực minh họa. -->
+          <div class="map-callout">
+            <span class="callout-kicker">KHU VỰC ĐANG KẾT NỐI</span>
+            <strong>Quận An Bình</strong>
+            <span>4 điểm cần hỗ trợ gần đây</span>
+          </div>
+          <!-- Quy ước marker giúp bản đồ dễ đọc kể cả khi không phân biệt màu. -->
+          <div class="map-legend" aria-label="Chú giải bản đồ">
+            <span><i class="legend-dot food-dot" aria-hidden="true"></i>Thực phẩm</span>
+            <span><i class="legend-dot medical-dot" aria-hidden="true"></i>Y tế</span>
+            <span><i class="legend-dot shelter-dot" aria-hidden="true"></i>Nơi ở</span>
+          </div>
+        </div>
+        <!-- Thông tin nhỏ dưới bản đồ gợi ý dữ liệu chỉ mang tính minh họa. -->
+        <p class="map-caption"><span aria-hidden="true">⌖</span> Bản đồ cộng đồng · dữ liệu minh họa</p>
+      </aside>
+    </section>
+
+    <!-- Khu vực bản đồ chính và danh sách các điểm mẫu theo nhu cầu. -->
+    <section class="map-section page-shell section-space" id="rescue-map" aria-labelledby="map-title">
+      <!-- Tiêu đề và mô tả ngắn giúp định hướng khu vực bản đồ. -->
+      <header class="section-heading">
+        <div>
+          <p class="eyebrow">Tình hình tại địa phương</p>
+          <h2 id="map-title">Những nơi đang cần chúng ta</h2>
+        </div>
+        <p class="section-note">Chọn một nhu cầu gần bạn để bắt đầu kết nối.</p>
+      </header>
+
+      <!-- Bản đồ và danh sách điểm được đặt cạnh nhau bằng CSS Grid. -->
+      <div class="map-layout">
+        <!-- Bản đồ mô phỏng với marker được định vị tương đối trong khung. -->
+        <article class="map-panel" aria-label="Bản đồ các điểm cứu trợ">
+          <div class="map-toolbar">
+            <div><span class="live-indicator" aria-hidden="true"></span><strong>Khu vực An Bình</strong></div>
+            <span class="sample-label">CẬP NHẬT HÔM NAY</span>
+          </div>
+          <div class="map-canvas map-canvas-large" role="group" aria-label="Bản đồ mô phỏng với các điểm cần thực phẩm, y tế và nơi ở tại khu vực An Bình">
+            <span class="map-district district-one" aria-hidden="true">AN BÌNH</span>
+            <span class="map-district district-two" aria-hidden="true">TÂN PHÚ</span>
+            <span class="map-district district-three" aria-hidden="true">BÌNH MINH</span>
+            <span class="map-river" aria-hidden="true"></span>
+            <span class="map-road road-one" aria-hidden="true"></span>
+            <span class="map-road road-two" aria-hidden="true"></span>
+            <span class="map-road road-three" aria-hidden="true"></span>
+            <span class="map-road road-four" aria-hidden="true"></span>
+            <span class="map-road road-five" aria-hidden="true"></span>
+            <a class="map-marker marker-food marker-one" href="#need-food" aria-label="Xem điểm cần thực phẩm tại Nhà văn hóa An Bình">1</a>
+            <a class="map-marker marker-medical marker-two" href="#need-medical" aria-label="Xem điểm cần y tế tại Trạm cộng đồng Tân Phú">2</a>
+            <a class="map-marker marker-shelter marker-three" href="#need-shelter" aria-label="Xem điểm cần nơi ở tại Trường tiểu học Bình Minh">3</a>
+            <a class="map-marker marker-food marker-four" href="#need-food" aria-label="Xem điểm cần thực phẩm tại Chợ An Bình">4</a>
+            <span class="map-center" aria-hidden="true">+</span>
+          </div>
+          <!-- Chú giải dạng Flexbox nêu rõ màu nhận diện từng loại hỗ trợ. -->
+          <ul class="legend" aria-label="Chú giải loại hỗ trợ">
+            <li><i class="legend-dot food-dot" aria-hidden="true"></i>Thực phẩm</li>
+            <li><i class="legend-dot medical-dot" aria-hidden="true"></i>Y tế</li>
+            <li><i class="legend-dot shelter-dot" aria-hidden="true"></i>Nơi ở</li>
+          </ul>
+        </article>
+
+        <!-- Danh sách các nhu cầu mẫu liên kết trực tiếp từ marker trên bản đồ. -->
+        <aside class="needs-panel" aria-labelledby="needs-title">
+          <div class="needs-heading">
+            <h3 id="needs-title">Điểm cần hỗ trợ</h3>
+            <span class="needs-count">04 điểm</span>
+          </div>
+          <article class="need-item need-food" id="need-food">
+            <span class="need-icon" aria-hidden="true">+</span>
+            <div class="need-copy"><span class="need-category">THỰC PHẨM</span><h4>Suất ăn gia đình</h4><p>Nhà văn hóa An Bình · 12 hộ</p></div>
+            <span class="need-distance">0,8 km</span>
+          </article>
+          <article class="need-item need-medical" id="need-medical">
+            <span class="need-icon" aria-hidden="true">✚</span>
+            <div class="need-copy"><span class="need-category">Y TẾ</span><h4>Thuốc sơ cứu cơ bản</h4><p>Trạm cộng đồng Tân Phú · 6 người</p></div>
+            <span class="need-distance">1,4 km</span>
+          </article>
+          <article class="need-item need-shelter" id="need-shelter">
+            <span class="need-icon" aria-hidden="true">⌂</span>
+            <div class="need-copy"><span class="need-category">NƠI Ở</span><h4>Chỗ nghỉ tạm an toàn</h4><p>Trường tiểu học Bình Minh · 4 hộ</p></div>
+            <span class="need-distance">2,1 km</span>
+          </article>
+          <article class="need-item need-food">
+            <span class="need-icon" aria-hidden="true">+</span>
+            <div class="need-copy"><span class="need-category">THỰC PHẨM</span><h4>Nước sạch đóng chai</h4><p>Chợ An Bình · 20 gia đình</p></div>
+            <span class="need-distance">2,6 km</span>
+          </article>
+          <p class="sample-disclaimer">Thông tin trên là dữ liệu mẫu phục vụ minh họa giao diện.</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Các loại đóng góp giúp người dùng nhận biết nhanh cách có thể hỗ trợ. -->
+    <section class="support-section section-space" aria-labelledby="support-title">
+      <div class="page-shell">
+        <header class="section-heading support-heading">
+          <div>
+            <p class="eyebrow">Mỗi sự giúp đỡ đều có ý nghĩa</p>
+            <h2 id="support-title">Bạn có thể chung tay bằng cách nào?</h2>
+          </div>
+          <p class="section-note">Bắt đầu từ điều bạn có thể làm hôm nay.</p>
+        </header>
+        <!-- CSS Grid tạo ba thẻ hỗ trợ cân đối và tự xếp lại trên màn hình nhỏ. -->
+        <div class="support-grid">
+          <article class="support-card support-card-food">
+            <span class="support-symbol" aria-hidden="true">01</span>
+            <p class="need-category">THỰC PHẨM</p>
+            <h3>Chia sẻ bữa ăn</h3>
+            <p>Gửi nhu yếu phẩm, nước uống hoặc một bữa ăn đủ chất đến các gia đình trong khu vực.</p>
+            <a href="#need-food" aria-label="Xem điểm cần hỗ trợ thực phẩm">Xem điểm cần hỗ trợ <span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="support-card support-card-medical">
+            <span class="support-symbol" aria-hidden="true">02</span>
+            <p class="need-category">Y TẾ</p>
+            <h3>Chăm sóc sức khỏe</h3>
+            <p>Đóng góp vật tư y tế cơ bản hoặc dành chuyên môn để hỗ trợ người cần chăm sóc.</p>
+            <a href="#need-medical" aria-label="Xem điểm cần hỗ trợ y tế">Xem điểm cần hỗ trợ <span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="support-card support-card-shelter">
+            <span class="support-symbol" aria-hidden="true">03</span>
+            <p class="need-category">NƠI Ở</p>
+            <h3>Trao một chỗ nghỉ</h3>
+            <p>Kết nối chỗ nghỉ tạm, vật dụng thiết yếu và không gian an toàn cho các hộ gia đình.</p>
+            <a href="#need-shelter" aria-label="Xem điểm cần hỗ trợ nơi ở">Xem điểm cần hỗ trợ <span aria-hidden="true">↗</span></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lời mời tham gia tình nguyện kết thúc luồng khám phá bằng hành động cụ thể. -->
+    <section class="volunteer-banner page-shell" aria-labelledby="volunteer-title">
+      <div class="volunteer-copy">
+        <p class="eyebrow">Cộng đồng bắt đầu từ bạn</p>
+        <h2 id="volunteer-title">Một giờ của bạn có thể<br>là điểm tựa của ai đó.</h2>
+        <p>Tham gia mạng lưới tình nguyện viên và cùng đưa sự hỗ trợ đến đúng nơi, đúng lúc.</p>
+      </div>
+      <a class="button button-light" href="volunteer.html">Trở thành tình nguyện viên <span aria-hidden="true">↗</span></a>
+      <span class="banner-decoration" aria-hidden="true">CR</span>
+    </section>
+  </main>
+
+  <!-- Footer nhắc lại tên hệ thống và mục đích kết nối cộng đồng. -->
+  <footer class="site-footer page-shell">
+    <a class="footer-brand" href="index.html">Community Rescue</a>
+    <p>Kết nối sẻ chia, lan tỏa hỗ trợ.</p>
+    <span>© Community Rescue · Bản đồ minh họa</span>
+  </footer>
+</body>
+<!-- Ghi chú học tập: semantic nằm ở header, nav, main, section, article, aside và footer. -->
+<!-- Flexbox dùng cho header, navigation, button group và legend; Grid dùng cho hero, bản đồ, thống kê và card. -->
+<!-- Responsive nằm trong các media query; design system nằm trong :root của css/style.css. -->
+<!-- Animation nằm trong keyframes và tương tác CSS; không dùng AOS vì AOS cần JavaScript. -->
+</html>
