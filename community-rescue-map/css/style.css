@@ -174,6 +174,11 @@ a:focus-visible {
 	color: #ffffff; /* Đảm bảo tương phản trên nút xanh. */
 }
 
+.nav-link.active {
+	background: var(--color-primary); /* Đánh dấu trang hiện tại bằng màu thương hiệu. */
+	color: #ffffff; /* Giữ nhãn trang hiện tại dễ đọc. */
+}
+
 .nav-link-cta:hover {
 	background: var(--color-primary-dark); /* Đổi sang xanh đậm khi hover. */
 	color: #ffffff; /* Giữ chữ sáng ở trạng thái hover. */
@@ -286,6 +291,11 @@ a:focus-visible {
 .button:active,
 .nav-link-cta:active {
 	transform: scale(0.98); /* Tạo cảm giác nhấn nút rõ nhưng không quá mạnh. */
+}
+
+.button:focus-visible {
+	outline: 3px solid var(--color-accent); /* Làm rõ nút đang được chọn bằng bàn phím. */
+	outline-offset: 4px; /* Tách viền focus khỏi nút. */
 }
 
 .hero-stats {
@@ -879,6 +889,268 @@ a:focus-visible {
 	margin: 0; /* Bỏ lề mặc định của đoạn footer. */
 }
 
+.volunteer-hero.hero {
+	grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr); /* Chừa chỗ cho lời mời và ghi chú đăng ký. */
+	padding-block-end: var(--space-5); /* Thu gọn khoảng cách trước biểu mẫu. */
+}
+
+.volunteer-hero .hero-copy {
+	max-width: 680px; /* Giữ phần giới thiệu trong độ dài dễ đọc. */
+}
+
+.volunteer-intro-card {
+	display: grid; /* Xếp thông tin hướng dẫn thành các hàng rõ ràng. */
+	gap: var(--space-2); /* Tách các nhóm nội dung trong thẻ. */
+	padding: clamp(1.25rem, 3vw, 2rem); /* Tạo khoảng đệm co giãn theo màn hình. */
+	border: 1px solid var(--color-line); /* Phân định nhẹ thẻ với nền trang. */
+	border-radius: var(--radius-lg); /* Đồng bộ góc bo với hệ thống. */
+	background: var(--color-surface); /* Dùng nền trắng của các panel chung. */
+	box-shadow: var(--shadow-soft); /* Tạo chiều sâu vừa phải. */
+}
+
+.volunteer-intro-card p {
+	margin: 0; /* Bỏ lề mặc định trong thẻ giới thiệu. */
+	color: var(--color-muted); /* Phân cấp phần mô tả phụ. */
+	font-size: 0.9rem; /* Giữ phần giải thích gọn và dễ đọc. */
+}
+
+.volunteer-intro-card strong {
+	color: var(--color-ink); /* Giữ nội dung nhấn có tương phản cao. */
+}
+
+.volunteer-page-content {
+	display: grid; /* Tạo bố cục hai cột cho biểu mẫu và thông tin bên cạnh. */
+	grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.75fr); /* Ưu tiên không gian cho biểu mẫu. */
+	align-items: start; /* Căn hai cột theo phần đầu nội dung. */
+	gap: clamp(1.25rem, 3vw, 2rem); /* Tạo khoảng cách linh hoạt giữa hai cột. */
+	padding-block: var(--space-3) var(--space-6); /* Tạo nhịp dọc cho khu vực đăng ký. */
+}
+
+.volunteer-form,
+.volunteer-aside {
+	min-width: 0; /* Ngăn nội dung dài gây tràn ngang trong lưới. */
+}
+
+.volunteer-form {
+	display: grid; /* Xếp các nhóm trường theo chiều dọc. */
+	gap: var(--space-3); /* Tách các nhóm biểu mẫu rõ ràng. */
+	padding: clamp(1.1rem, 3vw, 2rem); /* Giữ lề trong thoáng trên mọi kích thước. */
+	border: 1px solid var(--color-line); /* Định ranh giới cho biểu mẫu. */
+	border-radius: var(--radius-lg); /* Đồng bộ góc bo với các panel khác. */
+	background: var(--color-surface); /* Làm nổi khu vực nhập trên nền trang. */
+	box-shadow: var(--shadow-soft); /* Tạo chiều sâu nhẹ cho biểu mẫu. */
+}
+
+.volunteer-form fieldset {
+	display: grid; /* Xếp các trường trong nhóm thành lưới linh hoạt. */
+	grid-template-columns: repeat(2, minmax(0, 1fr)); /* Chia đôi các trường ngắn trên màn lớn. */
+	gap: var(--space-2); /* Tạo khoảng cách đều giữa các trường. */
+	min-width: 0; /* Cho phép fieldset co theo chiều rộng cột. */
+	margin: 0; /* Bỏ lề fieldset mặc định. */
+	padding: 0; /* Đặt khoảng đệm theo thiết kế riêng. */
+	border: 0; /* Bỏ viền mặc định để giao diện gọn hơn. */
+}
+
+.volunteer-form legend {
+	grid-column: 1 / -1; /* Để tiêu đề nhóm chạy hết chiều rộng. */
+	width: 100%; /* Bảo đảm legend căn theo toàn bộ lưới trường. */
+	margin-bottom: 0.15rem; /* Tách tiêu đề nhóm khỏi các trường. */
+	color: var(--color-ink); /* Giữ tiêu đề nhóm tương phản rõ ràng. */
+	font-size: 1rem; /* Tạo phân cấp vừa phải cho nhóm trường. */
+	font-weight: 750; /* Làm rõ chức năng của từng nhóm. */
+}
+
+.volunteer-form h2 {
+	margin: 0; /* Bỏ lề mặc định của tiêu đề biểu mẫu. */
+	font-size: clamp(1.55rem, 3vw, 2rem); /* Điều chỉnh tiêu đề theo chiều rộng màn hình. */
+	line-height: 1.2; /* Giữ tiêu đề gọn và dễ đọc. */
+}
+
+.form-field {
+	display: grid; /* Đặt nhãn và điều khiển thành hai hàng. */
+	align-content: start; /* Giữ các nhãn thẳng hàng phía trên. */
+	gap: 0.4rem; /* Tách nhãn khỏi ô nhập. */
+	min-width: 0; /* Cho phép trường co mà không tràn lưới. */
+}
+
+.form-field-wide {
+	grid-column: 1 / -1; /* Cho trường dài sử dụng cả hai cột. */
+}
+
+.form-field label,
+.volunteer-form .group-label {
+	color: var(--color-ink); /* Đảm bảo nhãn trường dễ đọc. */
+	font-size: 0.84rem; /* Giữ nhãn gọn nhưng đủ rõ. */
+	font-weight: 650; /* Phân biệt nhãn với nội dung nhập. */
+}
+
+.required-mark {
+	color: var(--color-food); /* Nhận diện trực quan trường bắt buộc. */
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+	width: 100%; /* Mở rộng vùng nhập theo chiều rộng của trường. */
+	min-height: 48px; /* Tạo vùng chạm thoải mái cho thiết bị di động. */
+	padding: 0.72rem 0.85rem; /* Tạo khoảng đệm dễ thao tác và đọc. */
+	border: 1px solid #cbd6cc; /* Tạo ranh giới đủ rõ trên nền trắng. */
+	border-radius: var(--radius-sm); /* Đồng bộ góc bo với các nút. */
+	background: #ffffff; /* Giữ bề mặt nhập sáng và rõ. */
+	color: var(--color-ink); /* Đảm bảo nội dung nhập có tương phản tốt. */
+	font: inherit; /* Dùng kiểu chữ chung của website. */
+	transition: border-color var(--transition-fast), box-shadow var(--transition-fast); /* Làm phản hồi focus mượt và nhanh. */
+}
+
+.form-field textarea {
+	min-height: 126px; /* Cung cấp không gian viết ghi chú đủ dùng. */
+	resize: vertical; /* Cho phép tăng chiều cao mà không gây tràn ngang. */
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+	color: #59675e; /* Giữ placeholder đủ tương phản để đọc. */
+	opacity: 1; /* Tránh trình duyệt làm placeholder quá mờ. */
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+	border-color: var(--color-primary); /* Đánh dấu rõ điều khiển đang nhập. */
+	outline: 3px solid rgb(28 97 77 / 16%); /* Thêm vòng focus dễ nhận biết. */
+	outline-offset: 1px; /* Tạo khoảng nhỏ giữa viền và vòng focus. */
+}
+
+.form-help {
+	margin: 0; /* Bỏ khoảng cách mặc định của ghi chú. */
+	color: var(--color-muted); /* Phân biệt hướng dẫn với nhãn chính. */
+	font-size: 0.76rem; /* Giữ phần hướng dẫn ngắn gọn. */
+}
+
+.support-options {
+	display: grid; /* Xếp lựa chọn thành lưới dễ quét. */
+	grid-template-columns: repeat(2, minmax(0, 1fr)); /* Dùng hai cột trên màn hình rộng. */
+	gap: 0.65rem; /* Tách các lựa chọn để dễ chạm. */
+}
+
+.support-option {
+	display: flex; /* Đặt checkbox cạnh nội dung mô tả. */
+	align-items: flex-start; /* Căn checkbox với dòng đầu của nhãn. */
+	gap: 0.65rem; /* Tạo khoảng chạm rõ giữa hộp và chữ. */
+	min-height: 48px; /* Bảo đảm vùng lựa chọn đủ lớn cho ngón tay. */
+	padding: 0.75rem; /* Mở rộng vùng tương tác của mỗi lựa chọn. */
+	border: 1px solid var(--color-line); /* Tạo ranh giới dễ nhận biết giữa các lựa chọn. */
+	border-radius: var(--radius-sm); /* Đồng bộ góc bo của các thành phần. */
+	background: #ffffff; /* Giữ nhãn rõ trên nền sáng. */
+	color: var(--color-ink); /* Đảm bảo chữ lựa chọn có tương phản cao. */
+	font-size: 0.82rem; /* Giữ nhãn vừa với lưới. */
+	font-weight: 600; /* Tăng độ rõ của nội dung có thể chọn. */
+	cursor: pointer; /* Báo hiệu toàn bộ thẻ lựa chọn có thể bấm. */
+	transition: border-color var(--transition-fast), background var(--transition-fast), box-shadow var(--transition-fast); /* Phản hồi lựa chọn mượt và nhẹ. */
+}
+
+.support-option:hover {
+	border-color: var(--color-primary); /* Làm rõ lựa chọn khi rê chuột. */
+	background: #f2f7f2; /* Tô nhẹ nền để gợi tương tác. */
+}
+
+.support-option input {
+	width: 1.1rem; /* Giữ checkbox đủ lớn để nhận biết. */
+	height: 1.1rem; /* Tạo kích thước checkbox cân đối. */
+	flex: 0 0 auto; /* Ngăn checkbox co lại trong nhãn dài. */
+	margin: 0.1rem 0 0; /* Căn checkbox với dòng đầu của chữ. */
+	accent-color: var(--color-primary); /* Dùng màu thương hiệu cho trạng thái đã chọn. */
+}
+
+.support-option:focus-within {
+	outline: 3px solid rgb(28 97 77 / 18%); /* Hiện trạng thái bàn phím quanh cả lựa chọn. */
+	outline-offset: 2px; /* Tách vòng focus khỏi card lựa chọn. */
+}
+
+.consent-row {
+	display: flex; /* Đặt ô xác nhận cạnh nội dung đồng ý. */
+	align-items: flex-start; /* Căn checkbox theo dòng chữ đầu. */
+	gap: 0.65rem; /* Tạo khoảng cách giữa ô chọn và nhãn. */
+	color: var(--color-muted); /* Giữ câu xác nhận nhẹ hơn tiêu đề nhóm. */
+	font-size: 0.8rem; /* Giữ nội dung xác nhận gọn và rõ. */
+}
+
+.consent-row input {
+	width: 1.1rem; /* Tạo checkbox dễ thao tác. */
+	height: 1.1rem; /* Giữ checkbox cân đối. */
+	flex: 0 0 auto; /* Ngăn checkbox co trong dòng dài. */
+	margin: 0.12rem 0 0; /* Căn checkbox với dòng chữ đầu. */
+	accent-color: var(--color-primary); /* Đồng bộ trạng thái chọn với thương hiệu. */
+}
+
+.form-actions {
+	display: flex; /* Giữ nút và ghi chú theo nhóm dễ quét. */
+	align-items: center; /* Căn nút với nội dung phụ. */
+	flex-wrap: wrap; /* Cho phép nội dung xuống hàng ở màn hẹp. */
+	gap: var(--space-2); /* Tạo khoảng cách giữa nút và ghi chú. */
+	padding-top: var(--space-1); /* Tách khu vực gửi khỏi các trường. */
+}
+
+.form-submit {
+	cursor: pointer; /* Hiển thị rõ đây là nút gửi biểu mẫu. */
+}
+
+.form-submit:focus-visible {
+	outline: 3px solid var(--color-accent); /* Làm rõ trạng thái focus bàn phím. */
+	outline-offset: 4px; /* Tách viền focus khỏi nút gửi. */
+}
+
+.form-actions p {
+	max-width: 240px; /* Giữ giải thích ngắn trong chiều dài dễ đọc. */
+	margin: 0; /* Bỏ lề mặc định của nội dung phụ. */
+	color: var(--color-muted); /* Phân cấp giải thích so với hành động chính. */
+	font-size: 0.75rem; /* Giữ ghi chú gọn. */
+}
+
+.volunteer-aside {
+	display: grid; /* Xếp tiêu đề và các thẻ thông tin theo cột. */
+	gap: var(--space-2); /* Tạo khoảng cách thống nhất giữa card. */
+}
+
+.volunteer-aside > h2 {
+	margin: 0; /* Bỏ lề mặc định trước nhóm card. */
+	font-size: 1.35rem; /* Tạo tiêu đề cột phụ rõ nhưng không lấn át. */
+	line-height: 1.25; /* Giữ tiêu đề phụ gọn. */
+}
+
+.volunteer-aside .support-card {
+	min-height: 0; /* Cho card cao theo nội dung thực tế. */
+	padding: 1.2rem; /* Thu khoảng đệm phù hợp với cột phụ. */
+}
+
+.volunteer-aside .support-symbol {
+	margin-bottom: 0.7rem; /* Thu khoảng cách biểu tượng trong cột hẹp. */
+}
+
+.volunteer-aside .support-card > p:not(.need-category) {
+	margin-bottom: 0; /* Tránh lề thừa ở cuối mô tả card. */
+}
+
+.volunteer-followup {
+	display: grid; /* Xếp lời mời kết nối và hướng dẫn thành các hàng. */
+	gap: 0.55rem; /* Tạo khoảng cách vừa đủ giữa tiêu đề và mô tả. */
+	margin-top: 0.35rem; /* Phân tách ghi chú sau các card. */
+	padding: 1rem; /* Tạo khoảng đệm trong ghi chú phụ. */
+	border-radius: var(--radius-md); /* Đồng bộ góc bo theo hệ thống. */
+	background: #eaf0e8; /* Nhấn nhẹ thông tin kết thúc cột. */
+}
+
+.volunteer-followup h3 {
+	margin: 0; /* Bỏ lề mặc định của tiêu đề nhỏ. */
+	font-size: 0.92rem; /* Giữ tiêu đề phụ gọn. */
+}
+
+.volunteer-followup p {
+	margin: 0; /* Bỏ lề để kiểm soát nhịp nội dung. */
+	color: var(--color-muted); /* Dùng sắc phụ cho phần mô tả. */
+	font-size: 0.8rem; /* Giữ hướng dẫn dễ đọc nhưng không lấn át form. */
+}
+
 @keyframes header-arrive {
 	from { opacity: 0; } /* Header bắt đầu trong suốt. */
 	to { opacity: 1; } /* Header hiện hoàn toàn. */
@@ -902,10 +1174,20 @@ a:focus-visible {
 @supports (animation-timeline: view()) {
 	.map-section,
 	.support-section,
-	.volunteer-banner {
+	.volunteer-banner,
+	.volunteer-page-content,
+	.volunteer-aside .support-card {
 		animation: reveal-on-scroll linear both; /* Dùng nhịp cuộn để làm section hiện dần. */
 		animation-timeline: view(); /* Gắn tiến trình animation với vùng nhìn của trình duyệt hỗ trợ. */
 		animation-range: entry 0% entry 35%; /* Giới hạn hiệu ứng trong đoạn đầu khi section xuất hiện. */
+	}
+
+	.volunteer-aside .support-card:nth-of-type(2) {
+		animation-range: entry 5% entry 40%; /* Tạo nhịp hiện nhẹ so le cho card thứ hai. */
+	}
+
+	.volunteer-aside .support-card:nth-of-type(3) {
+		animation-range: entry 10% entry 45%; /* Tạo nhịp hiện nhẹ so le cho card thứ ba. */
 	}
 }
 
@@ -940,6 +1222,16 @@ a:focus-visible {
 		grid-column: 2; /* Đặt khoảng cách dưới phần địa điểm trên tablet. */
 		padding-top: 0; /* Bỏ căn chỉnh theo hàng đầu. */
 	}
+
+	.volunteer-hero.hero {
+		grid-template-columns: minmax(0, 1fr) minmax(240px, 0.8fr); /* Giữ phần giới thiệu cân đối trên tablet. */
+		gap: 1.5rem; /* Thu khoảng cách hai cột trên màn vừa. */
+	}
+
+	.volunteer-page-content {
+		grid-template-columns: minmax(0, 1.1fr) minmax(250px, 0.8fr); /* Thu cột phụ nhưng giữ form đủ rộng. */
+		gap: 1rem; /* Giảm khe cột cho tablet. */
+	}
 }
 
 @media (max-width: 680px) {
@@ -972,6 +1264,43 @@ a:focus-visible {
 		grid-template-columns: minmax(0, 1fr); /* Chuyển hero thành một cột. */
 		gap: 2.1rem; /* Tách nội dung với bản đồ. */
 		padding-block: 3rem 2.6rem; /* Rút gọn khoảng đệm đầu trang. */
+	}
+
+	.volunteer-hero.hero {
+		grid-template-columns: minmax(0, 1fr); /* Xếp lời mời và ghi chú thành một cột trên mobile. */
+		gap: 1.5rem; /* Giữ khoảng cách vừa giữa hai phần hero. */
+		padding-block: 2.5rem 1.5rem; /* Thu gọn khoảng đệm đầu trang đăng ký. */
+	}
+
+	.volunteer-page-content {
+		grid-template-columns: minmax(0, 1fr); /* Đặt biểu mẫu và phần thông tin thành một cột. */
+		padding-block: var(--space-2) var(--space-5); /* Thu khoảng cách dọc cho điện thoại. */
+	}
+
+	.volunteer-form fieldset {
+		grid-template-columns: minmax(0, 1fr); /* Xếp mọi trường thành một cột trên mobile. */
+	}
+
+	.form-field-wide {
+		grid-column: auto; /* Để trường dài theo cột duy nhất trên mobile. */
+	}
+
+	.support-options {
+		grid-template-columns: minmax(0, 1fr); /* Mở rộng lựa chọn để dễ thao tác bằng ngón tay. */
+	}
+
+	.form-actions {
+		align-items: stretch; /* Cho nút chiếm đủ chiều ngang trên màn nhỏ. */
+		flex-direction: column; /* Xếp nút và ghi chú thành hai hàng. */
+	}
+
+	.form-submit {
+		width: 100%; /* Tạo vùng bấm rộng trên điện thoại. */
+		min-height: 52px; /* Đảm bảo chiều cao nút phù hợp thao tác chạm. */
+	}
+
+	.form-actions p {
+		max-width: none; /* Dùng chiều rộng cột cho ghi chú bên dưới nút. */
 	}
 
 	.hero h1 {
@@ -1126,6 +1455,14 @@ a:focus-visible {
 	.need-distance {
 		grid-column: 2; /* Đặt khoảng cách dưới địa điểm. */
 		padding-top: 0; /* Căn sát thông tin điểm. */
+	}
+
+	.volunteer-form {
+		padding: 1rem; /* Giữ lề trong gọn ở điện thoại nhỏ. */
+	}
+
+	.volunteer-form fieldset {
+		gap: 0.85rem; /* Thu nhịp giữa trường ở màn hình rất nhỏ. */
 	}
 }
 
