@@ -1,0 +1,202 @@
+<!doctype html>
+<!-- Khai báo tài liệu HTML5 để trình duyệt hiển thị đúng chuẩn. -->
+<html lang="vi">
+<!-- Đặt tiếng Việt làm ngôn ngữ chính cho nội dung và trình đọc màn hình. -->
+<head>
+  <!-- Nhóm metadata và liên kết stylesheet dùng chung. -->
+  <meta charset="utf-8">
+  <!-- Bảo đảm tiếng Việt hiển thị đúng trên mọi thiết bị. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Giúp bố cục thích ứng theo chiều rộng màn hình. -->
+  <meta name="theme-color" content="#f5f7f2">
+  <!-- Đồng bộ màu thanh trình duyệt với giao diện chung. -->
+  <meta name="description" content="Đăng ký tham gia mạng lưới tình nguyện viên Community Rescue và hỗ trợ cộng đồng gần bạn.">
+  <!-- Mô tả ngắn gọn nội dung trang đăng ký. -->
+  <title>Đăng ký tình nguyện viên | Community Rescue</title>
+  <!-- Đặt tiêu đề riêng cho trang tình nguyện viên. -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Tái sử dụng stylesheet chung của website. -->
+</head>
+<body>
+  <!-- Cung cấp lối tắt cho người dùng bàn phím đến nội dung chính. -->
+  <a class="skip-link" href="#main-content">Bỏ qua điều hướng</a>
+
+  <!-- Header và nhận diện thương hiệu đồng bộ với trang bản đồ. -->
+  <header class="site-header">
+    <!-- Liên kết thương hiệu đưa người dùng về trang chủ. -->
+    <a class="brand" href="index.html" aria-label="Community Rescue, về trang bản đồ">
+      <!-- Biểu tượng trang trí được ẩn khỏi trình đọc màn hình. -->
+      <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+      <!-- Hiển thị tên thương hiệu và thông điệp chung. -->
+      <span class="brand-copy">
+        <strong>Community Rescue</strong>
+        <small>Kết nối để cùng giúp đỡ</small>
+      </span>
+    </a>
+    <!-- Điều hướng chỉ gồm bản đồ và trang đăng ký tình nguyện viên. -->
+    <nav class="primary-nav" aria-label="Điều hướng chính">
+      <a class="nav-link" href="index.html">Bản đồ</a>
+      <a class="nav-link nav-link-cta active" href="volunteer.html" aria-current="page">Đăng ký tình nguyện viên</a>
+    </nav>
+  </header>
+
+  <!-- Khu vực chính chứa lời mời và biểu mẫu đăng ký. -->
+  <main id="main-content">
+    <!-- Hero giới thiệu cách tình nguyện viên có thể tạo tác động thiết thực. -->
+    <section class="hero volunteer-hero page-shell" aria-labelledby="hero-title">
+      <!-- Tiêu đề, lời giới thiệu và lối tắt đến biểu mẫu. -->
+      <section class="hero-copy">
+        <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> Cộng đồng bắt đầu từ bạn</p>
+        <!-- Tiêu đề chính nêu rõ mục đích của trang. -->
+        <h1 id="hero-title">Chung tay hôm nay.<br><span>Lan tỏa hy vọng.</span></h1>
+        <!-- Mô tả những cách tình nguyện viên có thể hỗ trợ cộng đồng. -->
+        <p class="hero-description">Từ chuẩn bị bữa ăn, chăm sóc y tế đến vận chuyển và chia sẻ thông tin, mỗi kỹ năng và khoảng thời gian bạn dành ra đều có thể kết nối sự giúp đỡ đến đúng nơi.</p>
+        <!-- Đưa người đọc thẳng đến biểu mẫu đăng ký. -->
+        <p class="button-group"><a class="button button-primary" href="#volunteer-form">Đăng ký tham gia <span aria-hidden="true">↓</span></a></p>
+      </section>
+
+      <!-- Nêu rõ nguyên tắc phối hợp và lời mời đăng ký. -->
+      <aside class="volunteer-intro-card" aria-label="Thông tin khi tham gia tình nguyện">
+        <p class="eyebrow">Cùng làm điều thiết thực</p>
+        <p><strong>Đăng ký theo khả năng của bạn.</strong> Bạn có thể chọn hình thức hỗ trợ, khu vực hoạt động và thời gian phù hợp.</p>
+        <p>Nhóm điều phối sẽ dựa trên thông tin bạn cung cấp để kết nối với nhu cầu cộng đồng tương ứng.</p>
+      </aside>
+    </section>
+
+    <!-- Biểu mẫu và thông tin tham gia tạo thành bố cục hai cột responsive. -->
+    <section class="volunteer-page-content page-shell" aria-labelledby="form-title">
+      <!-- Thu thập thông tin cần thiết để điều phối hoạt động tình nguyện. -->
+      <form class="volunteer-form" id="volunteer-form" method="post">
+        <!-- Tiêu đề và hướng dẫn ngắn cho biểu mẫu. -->
+        <header>
+          <p class="eyebrow">Bắt đầu từ đây</p>
+          <h2 class="section-heading-title" id="form-title">Đăng ký tình nguyện</h2>
+          <p class="form-help">Các mục có dấu <span class="required-mark" aria-hidden="true">*</span> là bắt buộc.</p>
+        </header>
+
+        <!-- Gom thông tin liên hệ vào một nhóm có tiêu đề truy cập được. -->
+        <fieldset>
+          <legend>Thông tin liên hệ</legend>
+          <!-- Thu thập họ tên đầy đủ của tình nguyện viên. -->
+          <p class="form-field">
+            <label for="full-name">Họ và tên <span class="required-mark" aria-hidden="true">*</span></label>
+            <input id="full-name" name="full-name" type="text" autocomplete="name" placeholder="Ví dụ: Nguyễn Minh An" required>
+          </p>
+          <!-- Kiểm tra định dạng và gợi ý nhập số điện thoại. -->
+          <p class="form-field">
+            <label for="phone">Số điện thoại <span class="required-mark" aria-hidden="true">*</span></label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" pattern="(\+84|0)[0-9]{9}" title="Nhập số gồm 10 chữ số bắt đầu bằng 0 hoặc mã quốc gia +84." placeholder="Ví dụ: 0912345678" required>
+          </p>
+          <!-- Dùng kiểm tra email HTML5 để nhận thông tin liên hệ hợp lệ. -->
+          <p class="form-field">
+            <label for="email">Email <span class="required-mark" aria-hidden="true">*</span></label>
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="ban@example.com" required>
+          </p>
+          <!-- Xác định khu vực thuận tiện để điều phối hỗ trợ. -->
+          <p class="form-field">
+            <label for="area">Địa chỉ hoặc khu vực hoạt động <span class="required-mark" aria-hidden="true">*</span></label>
+            <input id="area" name="area" type="text" autocomplete="address-level2" placeholder="Phường, quận/huyện, tỉnh/thành" required>
+          </p>
+        </fieldset>
+
+        <!-- Nhóm checkbox giúp chọn một hoặc nhiều hình thức hỗ trợ. -->
+        <fieldset>
+          <legend>Hình thức bạn có thể hỗ trợ</legend>
+          <!-- Đưa các lựa chọn thành thẻ lớn, dễ thao tác trên màn hình cảm ứng. -->
+          <section class="support-options" aria-label="Các hình thức hỗ trợ">
+            <label class="support-option"><input name="support-type" type="checkbox" value="food"> Hỗ trợ thực phẩm</label>
+            <label class="support-option"><input name="support-type" type="checkbox" value="medical"> Hỗ trợ y tế</label>
+            <label class="support-option"><input name="support-type" type="checkbox" value="shelter"> Hỗ trợ nơi ở</label>
+            <label class="support-option"><input name="support-type" type="checkbox" value="transport"> Vận chuyển</label>
+            <label class="support-option"><input name="support-type" type="checkbox" value="information"> Hỗ trợ thông tin</label>
+            <label class="support-option"><input name="support-type" type="checkbox" value="other"> Hỗ trợ khác</label>
+          </section>
+          <!-- Cho biết có thể chọn nhiều hình thức và không bắt buộc. -->
+          <p class="form-help form-field-wide">Có thể chọn nhiều hình thức phù hợp với bạn.</p>
+        </fieldset>
+
+        <!-- Thu thập kỹ năng, thời gian và ghi chú trong cùng nhóm thông tin. -->
+        <fieldset>
+          <legend>Kỹ năng và thời gian</legend>
+          <!-- Ghi nhận kinh nghiệm liên quan để ghép đúng hoạt động. -->
+          <p class="form-field form-field-wide">
+            <label for="skills">Kỹ năng hoặc kinh nghiệm</label>
+            <textarea id="skills" name="skills" rows="4" placeholder="Ví dụ: sơ cứu, nấu ăn, lái xe, phiên dịch, tổ chức hoạt động"></textarea>
+          </p>
+          <!-- Cho phép chọn những khung thời gian thường có thể tham gia. -->
+          <p class="form-field form-field-wide">
+            <label for="availability">Thời gian có thể hỗ trợ <span class="required-mark" aria-hidden="true">*</span></label>
+            <select id="availability" name="availability" required>
+              <option value="" selected disabled>Chọn khung thời gian phù hợp</option>
+              <option value="weekday">Ngày thường</option>
+              <option value="weekend">Cuối tuần</option>
+              <option value="flexible">Linh hoạt theo hoạt động</option>
+              <option value="evening">Buổi tối</option>
+            </select>
+          </p>
+          <!-- Tạo chỗ ghi chú thêm cho nhu cầu hoặc giới hạn riêng. -->
+          <p class="form-field form-field-wide">
+            <label for="notes">Giới thiệu hoặc ghi chú thêm</label>
+            <textarea id="notes" name="notes" rows="4" maxlength="1000" placeholder="Chia sẻ thêm điều bạn muốn nhóm điều phối biết"></textarea>
+          </p>
+        </fieldset>
+
+        <!-- Yêu cầu người gửi xác nhận thông tin liên hệ trước khi gửi. -->
+        <label class="consent-row" for="contact-consent">
+          <input id="contact-consent" name="contact-consent" type="checkbox" value="yes" required>
+          Tôi xác nhận thông tin liên hệ là chính xác để nhóm điều phối có thể trao đổi về hoạt động tình nguyện.
+        </label>
+
+        <!-- Nút gửi có trạng thái tương tác và vùng chạm dễ sử dụng. -->
+        <section class="form-actions" aria-label="Gửi đăng ký">
+          <button class="button button-primary form-submit" type="submit">Đăng ký tình nguyện <span aria-hidden="true">↗</span></button>
+          <p>Thông tin giúp kết nối bạn với hoạt động phù hợp tại địa phương.</p>
+        </section>
+      </form>
+
+      <!-- Những thẻ thông tin giúp người đăng ký hiểu hoạt động trước khi gửi. -->
+      <aside class="volunteer-aside" aria-labelledby="participation-title">
+        <h2 id="participation-title">Cùng nhau tạo khác biệt</h2>
+        <!-- Giải thích lợi ích cộng đồng của việc tham gia tình nguyện. -->
+        <article class="support-card support-card-food">
+          <span class="support-symbol" aria-hidden="true">01</span>
+          <p class="need-category">Ý NGHĨA</p>
+          <h3>Vì sao nên tham gia?</h3>
+          <p>Sự hiện diện và thời gian của bạn giúp cộng đồng phản hồi nhanh hơn khi ai đó cần hỗ trợ.</p>
+        </article>
+        <!-- Nêu các nhóm kỹ năng và hình thức đóng góp đa dạng. -->
+        <article class="support-card support-card-medical">
+          <span class="support-symbol" aria-hidden="true">02</span>
+          <p class="need-category">ĐÓNG GÓP</p>
+          <h3>Bạn có thể hỗ trợ gì?</h3>
+          <p>Từ kỹ năng chuyên môn đến việc vận chuyển, phân loại nhu yếu phẩm hoặc chia sẻ thông tin hữu ích.</p>
+        </article>
+        <!-- Mô tả ngắn gọn các bước phối hợp sau khi đăng ký. -->
+        <article class="support-card support-card-shelter">
+          <span class="support-symbol" aria-hidden="true">03</span>
+          <p class="need-category">KẾT NỐI</p>
+          <h3>Quy trình tham gia</h3>
+          <p>Gửi thông tin, trao đổi với nhóm điều phối, rồi thống nhất hoạt động phù hợp với thời gian của bạn.</p>
+        </article>
+        <!-- Đưa ra lời nhắc rằng mọi mức độ đóng góp đều có giá trị. -->
+        <section class="volunteer-followup" aria-label="Lời nhắn dành cho tình nguyện viên mới">
+          <h3>Bắt đầu từ điều bạn làm tốt</h3>
+          <p>Không cần có thật nhiều thời gian; một kỹ năng phù hợp cũng có thể giúp ai đó vượt qua lúc khó khăn.</p>
+        </section>
+      </aside>
+    </section>
+  </main>
+
+  <!-- Footer dùng chung nhận diện và thông điệp với trang bản đồ. -->
+  <footer class="site-footer page-shell">
+    <a class="footer-brand" href="index.html">Community Rescue</a>
+    <p>Kết nối sẻ chia, lan tỏa hỗ trợ.</p>
+    <span>© Community Rescue · Bản đồ minh họa</span>
+  </footer>
+</body>
+<!-- Semantic HTML nằm ở header, nav, main, section, article, aside, form, fieldset, legend, label và footer. -->
+<!-- Flexbox dùng cho header, navigation, nhóm nút, lựa chọn hỗ trợ và các hàng biểu mẫu; Grid dùng cho form, aside và card. -->
+<!-- Responsive được triển khai bằng Grid và breakpoint trong css/style.css; design system cũng được dùng từ stylesheet chung. -->
+<!-- Animation fade/slide dùng opacity và transform; scroll-driven animation CSS chạy khi được trình duyệt hỗ trợ. -->
+<!-- Không sử dụng AOS vì thư viện này cần JavaScript, trái với yêu cầu chỉ dùng HTML và CSS. -->
+</html>
